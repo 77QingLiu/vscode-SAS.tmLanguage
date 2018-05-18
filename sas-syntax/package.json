@@ -1,0 +1,26 @@
+{
+    "name": "sas-syntax",
+    "displayName": "SAS-Syntax",
+    "description": "syntax highlihter for SAS",
+    "version": "0.0.1",
+    "publisher": "qing",
+    "engines": {
+        "vscode": "^1.20.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "sas",
+            "aliases": ["sas", "sas"],
+            "extensions": [".sas"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "sas",
+            "scopeName": "source.sas",
+            "path": "./syntaxes/sas.tmLanguage.json"
+        }]
+    }
+}
