@@ -128,7 +128,7 @@
 			"scope": "support.class.character-class",
 			"settings": {
 				"fontStyle": " bold italic",
-				"foreground": "#000040"
+				"foreground": "#000050"
 			}
 		},
 		{
@@ -185,12 +185,17 @@
 		}
 	],
 	"colors": {
-		"editor.background": "#FFFFFF26",
-		"editorCursor.foreground": "#000000",
+		"editor.background": "#FFFFFF",
 		"editor.foreground": "#000000",
-		"editorWhitespace.foreground": "#FFFFFF26",
-		"editor.lineHighlightBackground": "#00000059",
-		"editor.selectionBackground": "#00000059"
+		"editor.inactiveSelectionBackground": "#E5EBF1",
+		"editorIndentGuide.background": "#D3D3D3",
+		"editorIndentGuide.activeBackground": "#939393",
+		"editor.selectionHighlightBackground": "#ADD6FF4D",
+		"editorSuggestWidget.background": "#F3F3F3",
+		"activityBarBadge.background": "#007ACC",
+		"sideBarTitle.foreground": "#6F6F6F",
+		"list.hoverBackground": "#E8E8E8",
+		"input.placeholderForeground": "#ADADAD"
 	},
 	"name": "SAS theme"
 }
