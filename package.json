@@ -21,6 +21,13 @@
             "language": "sas",
             "scopeName": "source.sas",
             "path": "./syntaxes/sas.tmLanguage.json"
-        }]
+        }],
+        "themes": [
+            {
+                "label": "SAS Theme",
+                "uiTheme": "vs",
+                "path": "./themes/SAS theme-color-theme.json"
+            }
+        ]
     }
 }

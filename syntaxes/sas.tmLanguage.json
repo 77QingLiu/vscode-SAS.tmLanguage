@@ -1,39 +1,945 @@
 {
-	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "sas",
-	"patterns": [
-		{
-			"name": "entity.section.sas",
-			"begin": "(?i)\bdata\b",
-			"end": "(?i)\brun\b",
-			"include": ""
-		},
-		{
-			"include": "#strings"
-		}
-	],
-	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.sas",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
-		},
-		"strings": {
-			"name": "string.quoted.double.sas",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.sas",
-					"match": "\\\\."
-				}
-			]
-		},
-		"funcList": {
-			"match": "(?i)\b(HBOUND|LBOUND|BAND|BLSHIFT|BNOT|BOR|BRSHIFT|BXOR|ANYALNUM|ANYALPHA|ANYCNTRL|ANYDIGIT|ANYFIRST|ANYGRAPH|ANYLOWER|ANYNAME|ANYPRINT|ANYPUNCT|ANYSPACE|ANYUPPER|ANYXDIGIT|BYTE|CALL CATS|CALL CATT|CALL CATX|CALL COMPCOST|CALL MISSING|CALL SCAN|CAT|CATQ|CATS|CATT|CATX|CHAR|CHOOSEC|CHOOSEN|COALESCEC|COLLATE|COMPARE|COMPBL|COMPGED|COMPLEV|COMPRESS|COUNT|COUNTC|COUNTW|DEQUOTE|FIND|FINDC|FINDW|FIRST|IFC|INDEX|INDEXC|INDEXW|LEFT|LENGTH|LENGTHC|LENGTHM|LENGTHN|LOWCASE|MD5|MISSING|MVALID|NLITERAL|NOTALNUM|NOTALPHA|NOTCNTRL|NOTDIGIT|NOTFIRST|NOTGRAPH|NOTLOWER|NOTNAME|NOTPRINT|NOTPUNCT|NOTSPACE|NOTUPPER|NOTXDIGIT|NVALID|PROPCASE|QUOTE|RANK|REPEAT|REVERSE|RIGHT|SCAN|SHA256 |SOUNDEX|SPEDIS|STRIP|SUBPAD|SUBSTR|SUBSTRN|TRANSLATE|TRANSTRN|TRANWRD|TRIM|TRIMN|TYPEOF|UPCASE|VERIFY|CALL PRXCHANGE|CALL PRXDEBUG|CALL PRXFREE|CALL PRXNEXT|CALL PRXPOSN|CALL PRXSUBSTR|PRXCHANGE|PRXMATCH|PRXPAREN|PRXPARSE|PRXPOSN|ALLCOMB|ALLPERM|CALL ALLCOMB|CALL ALLCOMBI|CALL ALLPERM|CALL GRAYCODE|CALL LEXCOMB|CALL LEXCOMBI|CALL LEXPERK|CALL LEXPERM|CALL RANCOMB|CALL RANPERK|CALL RANPERM|COMB|GRAYCODE|LCOMB|LEXCOMB|LEXCOMBI|LEXPERK|LEXPERM|LFACT|LPERM|PERM|CALL IS8601_CONVERT|DATDIF|DATE|DATEJUL|DATEPART|DATETIME|DAY|DHMS|HMS|HOLIDAY|HOUR|INTCINDEX|INTCK|INTCYCLE|INTFIT|INTFMT|INTGET|INTINDEX|INTNX|INTSEAS|INTSHIFT|INTTEST|JULDATE|JULDATE7|MDY|MINUTE|MONTH|NWKDOM|QTR|SECOND|TIME|TIMEPART|TODAY|TZONEID|TZONENAME|TZONEOFF|WEEK|WEEKDAY|YEAR|YRDIF|YYQ|CMISS|CSS|CV|EUCLID|GEOMEAN|GEOMEANZ|HARMEAN|HARMEANZ|IQR|KURTOSIS|LARGEST|LPNORM|MAD|MAX|MEAN|MEDIAN|MIN|MISSING|N|NMISS|ORDINAL|PCTL|RANGE|RMS|SKEWNESS|SMALLEST|STD|STDERR|SUM|SUMABS|USS|VAR|GEODIST|ZIPCITYDISTANCE|DCLOSE|DCREATE|DINFO|DNUM|DOPEN|DOPTNAME|DOPTNUM|DREAD|DROPNOTE|FAPPEND|FCLOSE|FCOL|FDELETE|FEXIST|FGET|FILEEXIST|FILENAME|FILEREF|FINFO|FNOTE|FOPEN|FOPTNAME|FOPTNUM|FPOINT|FPOS|FPUT|FREAD|FREWIND|FRLEN|FSEP|FWRITE|MOPEN|PATHNAME|RENAME|SYSMSG|SYSRC|CALL MODULE|MODULEC|MODULEN|BLACKCLPRC|BLACKPTPRC|BLKSHCLPRC|BLKSHPTPRC|COMPOUND|CONVX|CONVXP|CUMIPMT|CUMPRINC|DACCDB|DACCDBSL|DACCSL|DACCSYD|DACCTAB|DEPDB|DEPDBSL|DEPSL|DEPSYD|DEPTAB|DUR|DURP|EFFRATE|FINANCE|GARKHCLPRC|GARKHPTPRC|INTRR|IPMT|IRR|MARGRCLPRC|MARGRPTPRC|MORT|NETPV|NOMRATE|NPV|PMT|PPMT|PVP|SAVING|SAVINGS|TIMEVALUE|YIELDP|ARCOSH|ARSINH|ARTANH|COSH|SINH|TANH|CALL EXECUTE|CALL SYMPUT|CALL SYMPUTX|DOSUBL|RESOLVE|SYMEXIST|SYMGET|SYMGLOBL|SYMLOCAL|ABS|AIRY|BETA|CALL LOGISTIC|CALL SOFTMAX|CALL STDIZE|CALL TANH|CNONCT|COALESCE|COMPFUZZ|CONSTANT|DAIRY|DEVIANCE|DIGAMMA|ERF|ERFC|EXP|FACT|FNONCT|GAMMA|GCD|IBESSEL|JBESSEL|LCM|LGAMMA|LOG|LOG1PX|LOG10|LOG2|LOGBETA|LOGISTIC|MOD|MODZ|MSPLINT|SIGN|SQRT|TNONCT|TRIGAMMA|IFN|MODEXIST|CDF|LOGCDF|LOGPDF|LOGSDF|PDF|POISSON|PROBBETA|PROBBNML|PROBBNRM|PROBCHI|PROBF|PROBGAM|PROBHYPR|PROBMC|PROBNEGB|PROBNORM|PROBT|SDF|BETAINV|CINV|FINV|GAMINV|PROBIT|QUANTILE|SQUANTILE|TINV|CALL RANBIN|CALL RANCAU|CALL RANEXP|CALL RANGAM|CALL RANNOR|CALL RANPOI|CALL RANTBL|CALL RANTRI|CALL RANUNI|CALL STREAMINIT|NORMAL|RANBIN|RANCAU|RAND|RANEXP|RANGAM|RANNOR|RANPOI|RANTBL|RANTRI|RANUNI|UNIFORM|ATTRC|ATTRN|CEXIST|CLOSE|CUROBS|DROPNOTE|DSNAME|ENVLEN|EXIST|FCOPY|FETCH|FETCHOBS|GETVARC|GETVARN|IORCMSG|LIBNAME|LIBREF|NOTE|OPEN|PATHNAME|POINT|RENAME|REWIND|SYSEXIST|SYSMSG|SYSRC|VARFMT|VARINFMT|VARLABEL|VARLEN|VARNAME|VARNUM|VARTYPE|WHICHC|WHICHN|CALL SORTC|CALL SORTN|ADDRLONG|CALL POKE|CALL POKELONG|CALL SLEEP|CALL SYSTEM|DIF|GETOPTION|INPUT|INPUTC|INPUTN|LAG|PEEK|PEEKC|PEEKCLONG|PEEKLONG|PTRLONGADD|PUT|PUTC|PUTN|SLEEP|SYSEXIST|SYSGET|SYSPARM|SYSPROCESSID|SYSPROCESSNAME |SYSPROD|SYSTEM|UUIDGEN|FIPNAME|FIPNAMEL|FIPSTATE|STFIPS|STNAME|STNAMEL|ZIPCITY|ZIPCITYDISTANCE|ZIPFIPS|ZIPNAME|ZIPNAMEL|ZIPSTATE|ARCOS|ARSIN|ATAN|ATAN2|COS|COT|CSC|SEC|SIN|TAN|CEIL|CEILZ|FLOOR|FLOORZ|FUZZ|INT|INTZ|ROUND|ROUNDE|ROUNDZ|TRUNC|CALL LABEL|CALL SET|CALL VNAME|CALL VNEXT|VARRAY|VARRAYX|VFORMAT|VFORMATD|VFORMATDX|VFORMATN|VFORMATNX|VFORMATW|VFORMATWX|VFORMATX|VINARRAY|VINARRAYX|VINFORMAT|VINFORMATD|VINFORMATDX|VINFORMATN|VINFORMATNX|VINFORMATW|VINFORMATWX|VINFORMATX|VLABEL|VLABELX|VLENGTH|VLENGTHX|VNAME|VNAMEX|VTYPE|VTYPEX|VVALUE|VVALUEX|SOAPWEB|SOAPWEBMETA|SOAPWIPSERVICE|SOAPWIPSRS|SOAPWS|SOAPWSMETA|HTMLDECODE|HTMLENCODE|URLDECODE|URLENCODE)\b",
-			"name": "variable.function.sas"
-		}
-	},
-	"scopeName": "source.sas"
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "sas",
+    "patterns": [
+        {
+            "include": "#specialparser"
+        },
+        {
+            "include": "#options"
+        },
+        {
+            "include": "#globalstatement"
+        },
+        {
+            "include": "#datastep"
+        },
+        {
+            "include": "#ODSstatement"
+        },
+        {
+            "include": "#sql"
+        },
+        {
+            "include": "#procstep"
+        }
+    ],
+    "repository": {
+        "globalstatement":{
+            "begin": "(?i:\\b(LIBNAME|FILENAME|X|FOOTNOTE\\d*|TITLE\\d*|DM|ENDSAS|DISPLAY|WINDOW)\\b)",
+            "end": ";",
+            "beginCaptures":{
+                "0":{
+                    "name": "keyword.language.global.sas"
+                }
+            },
+            "patterns":[
+                {
+                    "include": "#specialparser"
+                }
+            ]       
+        },
+        "ODSstatement":{
+            "begin": "(?i:\\b(ODS)\\b)",
+            "end": ";",
+            "beginCaptures":{
+                "0":{
+                    "name": "storage.type.class.sas"
+                }
+            },
+            "patterns":[
+                {
+                    "name": "storage.type.function.sas",
+                    "match": "(?i:\\b(HTML|PDF|RTF|EXCEL|EXCELXP|PACKAGE|_ALL_ CLOSE|DOCUMENT|ESCAPECHAR|EXCLUDE|GRAPHICS|LAYOUT ABSOLUTE|REGION|LAYOUT GRIDDED|REGION|LAYOUT END|PATH|PREFERENCES|PROCLABEL|PROCTITLE|RESULTS|SELECT|SHOW|TEXT|TRACE|USEGOPT|VERIFY|DECIMAL_ALIGN|LISTING( +close\b)?|NO_DECIMAL_ALIGN|OUTPUT)\\b)"
+                }
+                ,
+                {
+                    "name": "keyword.language.ods.sas",
+                    "match": "(?i:\\b(FILE|ID|ANCHOR|ARCHIVE|ATTRIBUTES|BASE|BODY|CHARSET|CLOSE|CODE|CODEBASE|CONTENTS|CSSSTYLE|DOM|ENCODING|EVENT|EXCLUDE +(ALL|NONE)?|FRAME|GFOOTNOTE|NOGFOOTNOTE|GPATH|GTITLE|NOGTITLE|HEADTEXT|METATEXT|NEWFILE|OPTIONS|PAGE|PARAMETERS|PATH|RECORD_SEPARATOR|SELECT +(ALL|NONE)?|SHOW|STYLE|STYLESHEET|TEXT|TRANTAB)\\b)"
+                }
+            ]
+        },
+        "specialparser":{
+            "patterns":[
+                {
+                    "include": "#double_quoted_string"
+                },
+                {
+                    "include": "#single_quoted_string"
+                },
+                {
+                    "include": "#block_comment_string"
+                },
+                {
+                    "include": "#line_comment_string"
+                },
+                {
+                    "include": "#macro"
+                },
+                {
+                    "include": "#constant"
+                },
+                {
+                    "include": "#format"
+                },
+                {
+                    "include": "#operator"
+                }
+            ]
+        },
+        "options":{
+            "begin": "(?i:\\b(options)\\b)",
+            "end": ";",
+            "beginCaptures":{
+                "0":{
+                    "name": "storage.type.class.sas"
+                }
+            },
+            "patterns":[
+                {
+                    "name": "keyword.language.options.sas",
+                    "match": "(?i:\\b(MFILE|(NO)?SYMBOLGEN|(NO)?MLOGIC|(NO)?MPRINT|(NO)?MLOGICNEST|PS|LS|NOQUOTELENMAX|ALIGNSASIOFILES|ANIMATION|ANIMDURATION|ANIMLOOP|ANIMOVERLAY|APPEND|APPLETLOC|AUTHPROVIDERDOMAIN|AUTOCORRECT|AUTOSAVELOC|BINDING|BOTTOMMARGIN|BUFNO|BUFSIZE|BYERR|(NO)?BYLINE|BYSORTED|CAPS|CARDIMAGE|CATCACHE|CBUFNO|(NO)?CENTER|CGOPTIMIZE|CHARCODE|CHKPTCLEAN|CLEANUP|CMPLIB|CMPMODEL|CMPOPT|COLLATE|COLOPHON|COLORPRINTING|COMPRESS|COPIES|CPUCOUNT|CPUID|CSTGLOBALLIB|CSTSAMPLELIB|DATAPAGESIZE|DATASTMTCHK|(NO)?DATE|DATESTYLE|DECIMALCONV|DEFLATION|DETAILS|DKRICOND|DKROCOND|DLCREATEDIR|DLDMGACTION|DMR|DMS|DMSEXP|DMSLOGSIZE|DMSOUTSIZE|DMSPGMLINESIZE|DMSSYNCHK|DSACCEL|DSNFERR|DTRESET|DUPLEX|ECHOAUTO|EMAILACKWAIT|EMAILAUTHPROTOCOL|EMAILFROM|EMAILHOST|EMAILID|EMAILPORT|EMAILPW|EMAILUTCOFFSET|ENGINE|ERRORABEND|ERRORBYABEND|ERRORCHECK|ERRORS|EVENTDS|EXPLORER|EXTENDOBSCOUNTER|FILESYNC|FIRSTOBS|FMTERR|FMTSEARCH|FONTEMBEDDING|FONTRENDERING|FONTSLOC|FORMCHAR|SASAUTOS|FORMDLIM|FORMS|HELPBROWSER|HELPENCMD|HELPHOST|HELPPORT|HOSTINFOLONG|HTTPSERVERPORTMAX|HTTPSERVERPORTMIN|IBUFNO|IBUFSIZE|INITCMD|INITSTMT|INSERT|INTERVALDS|INVALIDDATA|JPEGQUALITY|LABEL|LABELCHKPT|LABELCHKPTLIB|LABELRESTART|_LAST_|LEFTMARGIN|LINESIZE|LOGPARM|LRECL|MERGENOBY|MISSING|MSGLEVEL|MULTENVAPPL|NEWS|(NO)?NOTES|(NO)?NUMBER|OBS|ORIENTATION|OVP|PAGEBREAKINITIAL|PAGENO|PAGESIZE|PAPERDEST|PAPERSIZE|PAPERSOURCE|PAPERTYPE|PARM|PARMCARDS|PDFACCESS|PDFASSEMBLY|PDFCOMMENT|PDFCONTENT|PDFCOPY|PDFFILLIN|PDFPAGELAYOUT|PDFPAGEVIEW|PDFPASSWORD|PDFPRINT|PDFSECURITY|PRESENV|PRIMARYPROVIDERDOMAIN|PRINTERPATH|PRINTINIT|PRINTMSGLIST|QUOTELENMAX|REPLACE|REUSE|RIGHTMARGIN|RLANG|RSASUSER|S|S2|S2V|SASHELP|SASUSER|SEQ|SETINIT|SKIP|SOLUTIONS|SORTDUP|SORTEQUALS|SORTSIZE|SORTVALIDATE|(NO)?SOURCE|SOURCE2|SPOOL|STARTLIB|STEPCHKPT|STEPCHKPTLIB|STEPRESTART|STRIPESIZE|SUMSIZE|SVGAUTOPLAY|SVGCONTROLBUTTONS|SVGFADEIN|SVGFADEMODE|SVGFADEOUT|SVGHEIGHT|SVGMAGNIFYBUTTON|SVGPRESERVEASPECTRATIO|SVGTITLE|SVGVIEWBOX|SVGWIDTH|SVGX|SVGY|SYNTAXCHECK|SYSPRINTFONT|TERMINAL|TERMSTMT|TEXTURELOC|(NO)?THREADS|TIMEZONE|TOPMARGIN|TRAINLOC|UBUFNO|UBUFSIZE|UPRINTCOMPRESSION|URLENCODING|USER|UTILLOC|UUIDCOUNT|UUIDGENDHOST|V6CREATEUPDATE|VALIDFMTNAME|VALIDMEMNAME|VALIDVARNAME|VARINITCHK|VARLENCHK|VBUFSIZE|VNFERR|WORK|WORKINIT|WORKTERM|YEARCUTOFF)\\b)"
+                }
+            ]
+         },
+        "datastep": {
+            "begin": "(?i:\\b(?=data)\\b)",
+            "end": "(?i:\\b(run|(?=proc))\\b)",
+            "endCaptures": {
+                "0":{
+                    "name": "storage.type.class.sas"
+                }
+            },
+            "patterns":[
+                {
+                    "include": "#specialparser"
+                },
+                {
+                    "include": "#datastatement"
+                }
+                ]
+        },
+        "datastatement":{
+            "patterns":[
+                {
+                    "include": "#datalookup"
+                },
+                {
+                    "include": "#dataassignment"
+                }
+            ]
+        },
+        "datalookup":{
+            "begin": "\\b(?i)((data)|(set|update|modify|merge))\\b",
+            "end": ";",
+            "beginCaptures": {
+                "2": {
+                    "name": "storage.type.class.sas"
+                },
+                "3": {
+                    "name": "keyword.general.lookup.sas"
+                }
+            },
+            "patterns":[
+                {
+                    "include": "#specialparser"
+                },
+                {
+                    "include": "#dataset"
+                },
+                {
+                    "include": "#check_balanced_bracket"
+                }
+            ]
+        },
+        "dataassignment":{
+            "patterns":[
+                {
+                    "include": "#check_balanced_bracket"
+                },
+                {
+                    "include": "#controlStatement"
+                },
+                {
+                    "include": "#controlKeyword"
+                },
+                {
+                    "include": "#funcList"
+                },
+                {
+                    "include": "#operator"
+                },
+                {
+                    "include": "#constant"
+                },
+                {
+                    "include": "#format"
+                }
+            ]
+        },
+        "funcList": {
+            "match": "\\b(?i)(HBOUND|LBOUND|BAND|BLSHIFT|BNOT|BOR|BRSHIFT|BXOR|ANYALNUM|ANYALPHA|ANYCNTRL|ANYDIGIT|ANYFIRST|ANYGRAPH|ANYLOWER|ANYNAME|ANYPRINT|ANYPUNCT|ANYSPACE|ANYUPPER|ANYXDIGIT|BYTE|CALL CATS|CALL CATT|CALL CATX|CALL COMPCOST|CALL MISSING|CALL SCAN|CAT|CATQ|CATS|CATT|CATX|CHAR|CHOOSEC|CHOOSEN|COALESCEC|COLLATE|COMPARE|COMPBL|COMPGED|COMPLEV|COMPRESS|COUNT|COUNTC|COUNTW|DEQUOTE|FIND|FINDC|FINDW|FIRST|IFC|INDEX|INDEXC|INDEXW|LEFT|LENGTH|LENGTHC|LENGTHM|LENGTHN|LOWCASE|MD5|MISSING|MVALID|NLITERAL|NOTALNUM|NOTALPHA|NOTCNTRL|NOTDIGIT|NOTFIRST|NOTGRAPH|NOTLOWER|NOTNAME|NOTPRINT|NOTPUNCT|NOTSPACE|NOTUPPER|NOTXDIGIT|NVALID|PROPCASE|QUOTE|RANK|REPEAT|REVERSE|RIGHT|SCAN|SHA256 |SOUNDEX|SPEDIS|STRIP|SUBPAD|SUBSTR|SUBSTRN|TRANSLATE|TRANSTRN|TRANWRD|TRIM|TRIMN|TYPEOF|UPCASE|VERIFY|CALL PRXCHANGE|CALL PRXDEBUG|CALL PRXFREE|CALL PRXNEXT|CALL PRXPOSN|CALL PRXSUBSTR|PRXCHANGE|PRXMATCH|PRXPAREN|PRXPARSE|PRXPOSN|ALLCOMB|ALLPERM|CALL ALLCOMB|CALL ALLCOMBI|CALL ALLPERM|CALL GRAYCODE|CALL LEXCOMB|CALL LEXCOMBI|CALL LEXPERK|CALL LEXPERM|CALL RANCOMB|CALL RANPERK|CALL RANPERM|COMB|GRAYCODE|LCOMB|LEXCOMB|LEXCOMBI|LEXPERK|LEXPERM|LFACT|LPERM|PERM|CALL IS8601_CONVERT|DATDIF|DATE|DATEJUL|DATEPART|DATETIME|DAY|DHMS|HMS|HOLIDAY|HOUR|INTCINDEX|INTCK|INTCYCLE|INTFIT|INTFMT|INTGET|INTINDEX|INTNX|INTSEAS|INTSHIFT|INTTEST|JULDATE|JULDATE7|MDY|MINUTE|MONTH|NWKDOM|QTR|SECOND|TIME|TIMEPART|TODAY|TZONEID|TZONENAME|TZONEOFF|WEEK|WEEKDAY|YEAR|YRDIF|YYQ|CMISS|CSS|CV|EUCLID|GEOMEAN|GEOMEANZ|HARMEAN|HARMEANZ|IQR|KURTOSIS|LARGEST|LPNORM|MAD|MAX|MEAN|MEDIAN|MIN|MISSING|N|NMISS|ORDINAL|PCTL|RANGE|RMS|SKEWNESS|SMALLEST|STD|STDERR|SUM|SUMABS|USS|VAR|GEODIST|ZIPCITYDISTANCE|DCLOSE|DCREATE|DINFO|DNUM|DOPEN|DOPTNAME|DOPTNUM|DREAD|DROPNOTE|FAPPEND|FCLOSE|FCOL|FDELETE|FEXIST|FGET|FILEEXIST|FILENAME|FILEREF|FINFO|FNOTE|FOPEN|FOPTNAME|FOPTNUM|FPOINT|FPOS|FPUT|FREAD|FREWIND|FRLEN|FSEP|FWRITE|MOPEN|PATHNAME|RENAME|SYSMSG|SYSRC|CALL MODULE|MODULEC|MODULEN|BLACKCLPRC|BLACKPTPRC|BLKSHCLPRC|BLKSHPTPRC|COMPOUND|CONVX|CONVXP|CUMIPMT|CUMPRINC|DACCDB|DACCDBSL|DACCSL|DACCSYD|DACCTAB|DEPDB|DEPDBSL|DEPSL|DEPSYD|DEPTAB|DUR|DURP|EFFRATE|FINANCE|GARKHCLPRC|GARKHPTPRC|INTRR|IPMT|IRR|MARGRCLPRC|MARGRPTPRC|MORT|NETPV|NOMRATE|NPV|PMT|PPMT|PVP|SAVING|SAVINGS|TIMEVALUE|YIELDP|ARCOSH|ARSINH|ARTANH|COSH|SINH|TANH|CALL EXECUTE|CALL SYMPUT|CALL SYMPUTX|DOSUBL|RESOLVE|SYMEXIST|SYMGET|SYMGLOBL|SYMLOCAL|ABS|AIRY|BETA|CALL LOGISTIC|CALL SOFTMAX|CALL STDIZE|CALL TANH|CNONCT|COALESCE|COMPFUZZ|CONSTANT|DAIRY|DEVIANCE|DIGAMMA|ERF|ERFC|EXP|FACT|FNONCT|GAMMA|GCD|IBESSEL|JBESSEL|LCM|LGAMMA|LOG|LOG1PX|LOG10|LOG2|LOGBETA|LOGISTIC|MOD|MODZ|MSPLINT|SIGN|SQRT|TNONCT|TRIGAMMA|IFN|MODEXIST|CDF|LOGCDF|LOGPDF|LOGSDF|PDF|POISSON|PROBBETA|PROBBNML|PROBBNRM|PROBCHI|PROBF|PROBGAM|PROBHYPR|PROBMC|PROBNEGB|PROBNORM|PROBT|SDF|BETAINV|CINV|FINV|GAMINV|PROBIT|QUANTILE|SQUANTILE|TINV|CALL RANBIN|CALL RANCAU|CALL RANEXP|CALL RANGAM|CALL RANNOR|CALL RANPOI|CALL RANTBL|CALL RANTRI|CALL RANUNI|CALL STREAMINIT|NORMAL|RANBIN|RANCAU|RAND|RANEXP|RANGAM|RANNOR|RANPOI|RANTBL|RANTRI|RANUNI|UNIFORM|ATTRC|ATTRN|CEXIST|CLOSE|CUROBS|DROPNOTE|DSNAME|ENVLEN|EXIST|FCOPY|FETCH|FETCHOBS|GETVARC|GETVARN|IORCMSG|LIBNAME|LIBREF|NOTE|OPEN|PATHNAME|POINT|RENAME|REWIND|SYSEXIST|SYSMSG|SYSRC|VARFMT|VARINFMT|VARLABEL|VARLEN|VARNAME|VARNUM|VARTYPE|WHICHC|WHICHN|CALL SORTC|CALL SORTN|ADDRLONG|CALL POKE|CALL POKELONG|CALL SLEEP|CALL SYSTEM|DIF|GETOPTION|INPUT|INPUTC|INPUTN|LAG|PEEK|PEEKC|PEEKCLONG|PEEKLONG|PTRLONGADD|PUT|PUTC|PUTN|SLEEP|SYSEXIST|SYSGET|SYSPARM|SYSPROCESSID|SYSPROCESSNAME |SYSPROD|SYSTEM|UUIDGEN|FIPNAME|FIPNAMEL|FIPSTATE|STFIPS|STNAME|STNAMEL|ZIPCITY|ZIPCITYDISTANCE|ZIPFIPS|ZIPNAME|ZIPNAMEL|ZIPSTATE|ARCOS|ARSIN|ATAN|ATAN2|COS|COT|CSC|SEC|SIN|TAN|CEIL|CEILZ|FLOOR|FLOORZ|FUZZ|INT|INTZ|ROUND|ROUNDE|ROUNDZ|TRUNC|CALL LABEL|CALL SET|CALL VNAME|CALL VNEXT|VARRAY|VARRAYX|VFORMAT|VFORMATD|VFORMATDX|VFORMATN|VFORMATNX|VFORMATW|VFORMATWX|VFORMATX|VINARRAY|VINARRAYX|VINFORMAT|VINFORMATD|VINFORMATDX|VINFORMATN|VINFORMATNX|VINFORMATW|VINFORMATWX|VINFORMATX|VLABEL|VLABELX|VLENGTH|VLENGTHX|VNAME|VNAMEX|VTYPE|VTYPEX|VVALUE|VVALUEX|SOAPWEB|SOAPWEBMETA|SOAPWIPSERVICE|SOAPWIPSRS|SOAPWS|SOAPWSMETA|HTMLDECODE|HTMLENCODE|URLDECODE|URLENCODE)\\b",
+            "name": "keyword.function-call.generic.sas"
+        },
+        "dataset": {
+            "match": "\\b(([A-z_]\\w*)\\.)?([A-z_]\\w*)\\b",
+            "captures": {
+                "1": {
+                    "name": "entity.name.library.sas"
+                },
+                "3":{
+                    "name": "variable.variable.dataset.language.sas"
+                }
+            }
+        },
+        "check_balanced_bracket":{
+            "patterns": [
+                {
+                    "match": "\\)",
+                    "name": "invalid.illegal"
+                },
+                {
+                    "begin": "\\(",
+                    "end": "\\)",
+                    "patterns":[
+                        {
+                            "include": "#specialparser"  
+                        },
+                        {
+                            "include": "#balanced_bracket"
+                        },
+                        {
+                            "include": "#dataOption"
+                        }
+                    ]
+                }
+            ]
+        },
+        "balanced_bracket": {
+            "begin": "\\(",
+            "end": "\\)",
+            "patterns":[
+                {
+                    "include": "#specialparser"
+                },
+                {
+                    "include": "#funcList"
+                },
+                {
+                    "include": "#balanced_bracket"
+                },
+                {
+                    "include": "#dataOption"
+                }
+            ]
+        },
+        "dataOption": {
+            "match": "\\b(?i)(ALTER|BUFNO|BUFSIZE|CNTLLEV|COMPRESS|DLDMGACTION|ENCRYPT|ENCRYPTKEY|EXTENDOBSCOUNTER|GENMAX|GENNUM|INDEX|LABEL|OBSBUF|OUTREP|PW|PWREQ|READ|REPEMPTY|REPLACE|REUSE|ROLE|SORTEDBY|SPILL|TOBSNO|TYPE|WRITE|FILECLOSE|FIRSTOBS|IN|OBS|POINTOBS|WHERE|WHEREUP|IDXNAME|IDXWHERE|DROP|KEEP|RENAME)\\b",
+            "name": "keyword.language.library.sas"
+        },
+        "controlStatement":{
+            "match": "\\b(?i)(where|do|else|end|goto|if|to|until|while|leave|cancel|then)\\b",
+            "name": "keyword.control.conditional.sas"            
+        },
+        "controlKeyword":{
+            "match": "\\b(?i)(ABORT|ARRAY|ATTRIB|BY|CARDS|CARDS4|CATNAME|CHECKPOINT EXECUTE_ALWAYS|CONTINUE|DATALINES|DATALINES4|DELETE|DESCRIBE|DISPLAY|DM|DROP|ENDSAS|ERROR|EXECUTE|FILE|FILENAME|FOOTNOTE|FORMAT|INFILE|INFORMAT|INPUT|KEEP|LABEL|LEAVE|LENGTH|LIBNAME|LINK|LIST|LOCK|LOSTCARD|OUTPUT|PUT|RENAME|REPLACE|RETAIN|RETURN|SELECT|STOP|X)\\b",
+            "name": "keyword.control.general.sas"            
+        },
+        "constant":{
+            "patterns": [
+                {
+                "match": "(?<![&\\}])\\b[0-9]*\\.?[0-9]+([eEdD][-+]?[0-9]+)?\\b",
+                "name": "constant.numeric.sas"
+                },
+                {
+                "match": "(')([^']+)(')(dt|[dt])",
+                "name": "constant.numeric.quote.single.sas"
+                },
+                {
+                "match": "(\")([^\"]+)(\")(dt|[dt])",
+                "name": "constant.numeric.quote.double.sas"
+                }
+            ]
+        },
+        "operator":{
+            "patterns": [
+                {
+                "match": "([\\+\\-\\*\\^\/])",
+                "name": "entity.name.arithmetic.sas"
+                },
+                {
+                "match": "\\s+(?i:(eq|ne|gt|lt|ge|le|in|not|&|and|or|min|max))\\s+",
+                "name": "keyword.operator.logical.sas"
+                },
+                {
+                "match": "([\\xAC<>^~]?=(:)?|>|<|!)",
+                "name": "keyword.operator.logical.sas"
+                }
+            ]
+        },
+        "format":{
+            "patterns": [
+                {
+                "name": "support.format.sas",
+                "match": "\\b(\\$)?([A-z]\\w*)(\\d*?\\.\\d*)(?=[^\\w])"
+                }
+            ]
+    },
+    "double_quoted_string": {
+        "name": "string.quoted.double.sas",
+        "begin": "(\")",
+        "end": "\\1",
+        "patterns": [
+            {
+                "include": "#macro"
+            }
+        ]
+    },
+    "single_quoted_string": {
+        "name": "string.quoted.single.sas",
+        "begin": "(')",
+        "end": "\\1"
+    },
+    "block_comment_string": {
+        "name": "comment.blcok.sas",
+        "begin": "(\\/\\*)",
+        "end": "(\\*\\/)",
+        "beginCaptures":{
+            "0":{
+                "name": "punctuation.definition.comment"
+            }
+        },
+        "endCaptures":{
+            "0":{
+                "name": "punctuation.definition.comment"
+            }
+        },
+        "patterns": [
+            {
+                "name": "constant.character.escape.sas",
+                "match": "\\\\."
+            }
+        ]
+    },
+    "line_comment_string": {
+        "name": "comment.line.sas",
+        "begin": "(^[\\s%]*\\*)",
+        "end": ";",
+        "beginCaptures":{
+            "0":{
+                "name": "punctuation.definition.comment"
+            }
+        },        
+        "patterns": [
+            {
+                "name": "constant.character.escape.sas",
+                "match": "\\\\."
+            }
+        ]
+    },
+    "macro": {
+        "patterns": [
+            {
+                "match": "(&+(?i:[a-z_]([a-z0-9_]+)?)(\\.+)?)\\b",
+                "name": "support.class.character-class.sas"
+            },
+            {
+                "begin": "(%(?i:[a-z_]\\w*))\\s*\\(",
+                "end": "\\)",
+                "beginCaptures": {
+                    "0":{
+                        "name": "support.class.character-class.sas"
+                    }
+                },
+                "patterns": [
+                    {
+                        "include": "#double_quoted_string"
+                    },
+                    {
+                        "include": "#single_quoted_string"
+                    },
+                    {
+                        "match": "([A-z_]\\w*)\\s*=",
+                        "captures": {
+                            "1":{
+                                "name": "variable.parameter.macro.sas"
+                            }
+                        }
+                    },
+                    {
+                        "begin": "\\(",
+                        "end": "\\)",
+                        "patterns":[
+                            {
+                                "include": "#double_quoted_string"
+                            },
+                            {
+                                "include": "#single_quoted_string"
+                            },
+                            {
+                                "include": "#balanced_bracket_macro"
+                            },
+                            {
+                                "match": "(%(?i:[a-z_]\\w*))",
+                                "name": "support.class.character-class.sas"
+                            }
+                        ]
+                    },
+                    {
+                        "match": "(%(?i:[a-z_]\\w*))",
+                        "name": "support.class.character-class.sas"                        
+                    }
+                ]
+            },
+            {
+                "match": "(%(?i:[a-z_]\\w*))",
+                "name": "support.class.character-class.sas"
+            }            
+        ]
+    },
+    "balanced_bracket_macro": {
+            "begin": "\\(",
+            "end": "\\)",
+            "patterns":[
+                {
+                    "include": "#double_quoted_string"
+                },
+                {
+                    "include": "#single_quoted_string"
+                },
+                {
+                    "include": "#balanced_bracket_macro"
+                }
+            ]
+    },
+    "style":{
+        "patterns": [
+            {
+                "match": "(?i:\\b(ASIS|BACKGROUNDCOLOR|BACKGOUNDIMAGE|BORDERBOTTOMCOLOR|BORDERBOTTOMSTYLE|BORDERBOTTOMWIDTH|BORDERLEFTCOLOR|BORDERLEFTSTYLE|BORDERLEFTWIDTH|BORDERCOLOR|BORDERCOLORDARK|BORDERCOLORLIGHT|BORDERRIGHTCOLOR|BORDERRIGHTSTYLE|BORDERRIGHTWIDTH|BORDERTOPCOLOR|BORDERTOPSTYLE|BORDERTOPWIDTH|BORDERWIDTH|CELLPADDING|CELLSPACING|CELLWIDTH|CLASS|COLOR|FLYOVER|FONT|FONTFAMILY|FONTSIZE|FONTSTYLE|FONTWEIGHT|FONTWIDTH|FRAME|HEIGHT|HREFTARGET|HTMLSTYLE|NOBREAKSPACE|OUTPUTWIDTH|POSTHTML|POSTIMAGE|POSTTEXT|PREHTML|PREIMAGE|PRETEXT|PROTECTSPECIALCHARS|RULES|TAGATTR|TEXTALIGN|URL|VERTICALALIGN|WIDTH)\\b)",
+                "name": "keyword.language.style.sas"
+            }
+        ]
+    },
+    "sql":{
+        "begin": "(?i:\\b((proc) +(sql))\\b)",
+        "end": "(?i:\\b(quit *;))",
+        "beginCaptures": {
+            "1":{
+                "name": "storage.type.class.sas"
+            },
+            "3":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "endCaptures": {
+            "0":{
+                "name": "storage.type.class.sas"
+            }
+        },
+        "patterns":[
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(create +table|separated +by|select|noprint|from|order +by|group +by|having|into|when|case|else|length|format|label|then|where|keep|drop|end|(left|right|inner) +join|union( +corr| +all)|except( +corr| +all))\\b)",
+                "name": "keyword.other.sql"
+            },
+            {
+                "match": "(?i:\\b(on|in|as|distinct|calculated|and|or)\\b)",
+                "name": "keyword.operator.logical.sql"
+            },
+            {
+                "match": "(\\b[A-z0-9]+)\\.",
+                "name": "constant.language.sas"
+            },
+            {
+                "include": "#format"
+            },
+            {
+                "include": "#funcList"
+            }
+        ]
+    },
+    "procstep":{
+        "begin": "(?i:\\b(proc)\\b)",
+        "end": "(?i:\\b(run)\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.class.sas"
+            }
+        },
+        "endCaptures": {
+            "0":{
+                "name": "storage.type.class.sas"
+            }
+        },
+        "patterns":[
+            {
+                "include": "#specialparser"
+            },
+            {
+                "include": "#procsteplist"
+            }
+            ]
+    },
+    "procsteplist":{
+        "patterns":[
+            {
+                "include": "#procreport"
+            },
+            {
+                "include": "#procformat"
+            },
+            {
+                "include": "#procprintto"
+            },
+            {
+                "include": "#proccompare"
+            },
+            {
+                "include": "#proctranspose"
+            },
+            {
+                "include": "#procsort"
+            },
+            {
+                "include": "#procmeans"  
+            },
+            {
+                "include": "#procgeneral"
+            }
+        ]
+    },
+    "procgeneral":{
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(ACCESS|ACECLUS|ADAPTIVEREG|ALLELE|ANOM|ANOVA|APPEND|ARIMA|AUTHLIB|AUTOREG|BOM|BOXPLOT|BTL|CALENDAR|CALIS|CALLRFC|CANCORR|CANDISC|CAPABILITY|CASECONTROL|CATALOG|CATMOD|CHART|CIMPORT|CLP|CLUSTER|COMPARE|COMPUTAB|CONTENTS|CONVERT|COPY|CORR|CORRESP|COUNTREG|CPM|CPORT|CUSUM|DATASETS|DATASOURCE|DBF|DBLOAD|DEFINE_EVENT|DEFINE_TAGSET|DELETE|DIF|DISCRIM|DISPLAY|DISTANCE|DOCUMENT|DQMATCH|DQSCHEME|DQSRVADM|DQSRVSVC|DS2|DSTRANS|DTREE|ENTROPY|ESM|EXPAND|EXPLODE|EXPORT|FACTEX|FACTOR|FAMILY|FASTCLUS|FCMP|FEDSQL|FMM|FONTREG|FORECAST|FORMAT|FORMS|FREQ|FSBROWSE|FSEDIT|FSLETTER|FSLIST|FSVIEW|G3D|G3GRID|GA|GAM|GANNO|GANTT|GAREABAR|GBARLINE|GCHART|GCONTOUR|GDEVICE|GENESELECT|GENMOD|GEOCODE|GFONT|GIMPORT|GINSIDE|GKEYMAP|GKPI|GLIMMIX|GLM|GLMMOD|GLMPOWER|GLMSELECT|GMAP|GOPTIONS|GPLOT|GPROJECT|GRADAR|GREDUCE|GREMOVE|GREPLAY|GROOVY|GSLIDE|GTESTIT|GTILE|HADOOP|HAPLOTYPE|HP4SCORE|HPBIN|HPCLUS|HPCORR|HPCOUNTREG|HPDECIDE|HPDMDB|HPDS2|HPF|HPFARIMASPEC|HPFDIAGNOSE|HPFENGINE|HPFESMSPEC|HPFEVENTS|HPFEXMSPEC|HPFIDMSPEC|HPFOREST|HPFSELECT|HPFUCMSPEC|HPGENSELECT|HPIMPUTE|HPLMIXED|HPLOGISTIC|HPLSO|HPMIXED|HPNEURAL|HPNLIN|HPNLMOD|HPQLIM|HPREDUCE|HPREG|HPSAMPLE|HPSEVERITY|HPSPLIT|HPSUMMARY|HPTMINE|HPTMSCORE|HTSNP|HTTP|IML|IMPORT|IMSTAT|INBREED|INFOMAPS|INTPOINT|ISHIKAWA|JSON|KDE|KRIGE2D|LATTICE|LIFEREG|LIFETEST|LOAN|LOESS|LOGISTIC|LP|MACONTROL|MACRO|MAPIMPORT|MCMC|MDC|MDS|MEANS|METADATA|MI|MIANALYZE|MIGRATE|MIXED|MODECLUS|MODEL|MULTTEST|NESTED|NETDRAW|NETFLOW|NLIN|NLMIXED|NLP|NPAR1WAY|ODS|OLAP|OPERATE|OPTEX|OPTGRAPH|OPTIONS|OPTLOAD|OPTLP|OPTMILP|OPTMODEL|OPTQP|OPTSAVE|ORTHOREG|PANEL|PARETO|PDLREG|PHREG|PLAN|PLM|PLOT|PLS|PM|PMENU|POWER|PRESENV|PRINCOMP|PRINQUAL|PRINT|PRINTTO|PROBIT|PROTO|PRTDEF|PRTEXP|PSMOOTH|PWENCODE|QDEVICE|QLIM|QUANTLIFE|QUANTREG|QUANTSELECT|RANK|REG|REGISTRY|RELIABILITY|REPORT|ROBUSTREG|RSREG|SCAPROC|SCORE|SEQDESIGN|SEQTEST|SERVER|SEVERITY|SGDESIGN|SGPANEL|SGPLOT|SGRENDER|SGSCATTER|SHEWHART|SIM2D|SIMILARITY|SIMLIN|SIMNORMAL|SOAP|SORT|SPECTRA|SQL|STANDARD|STATESPACE|STATGRAPH|STDIZE|STDRATE|STEPDISC|STP|STREAM|SUMMARY|SURVEYFREQ|SURVEYLOGISTIC|SURVEYMEANS|SURVEYPHREG|SURVEYREG|SURVEYSELECT|SYSLIN|TABULATE|TCALIS|TEMPLATE|TIMEID|TIMEPLOT|TIMESERIES|TPSPLINE|TRANS|TRANSPOSE|TRANSREG|TRANTAB|TREE|TSCSREG|TTEST|UCM|UNIVARIATE|VARCLUS|VARCOMP|VARIOGRAM|VARMAX|X11|X12|XSL)\\b)",
+                "name": "storage.type.function.sas"
+            }
+        ]
+    },
+    "procprintto":{
+        "begin": "(?i:\\b(printto)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match":"(?i:\\b(file|LABEL|LOG|NEW|PRINT|UNIT)\\b)",
+                "name": "keyword.language.procprintto.sas"
+            }
+        ]
+    },
+    "procreport":{
+        "begin": "(?i:\\b(report)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "begin": "(?i:\\b(DEFINE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procreport.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"  
+                    },
+                    {
+                        "match": "(?i:\\b(MIN|MAX|SUM|CENTER|COLOR|LEFT|RIGHT|EXCLUSIVE|FORMAT|MISSING|MLF|ORDER|PRELOADFMT|SPACING|STYLE|WEIGHT|WIDTH|ACROSS|ANALYSIS|COMPUTED|DISPLAY|GROUP|ORDER|CONTENTS|DESCENDING|FLOW|ID|NOPRINT|NOZERO|PAGE)\\b)",
+                        "name": "keyword.language.procreport.sas"
+                    },
+                    {
+                        "include": "#style"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(BREAK|RBREAK)\\b\\s*(BEFORE|AFTER)?)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procreport.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"  
+                    },
+                    {
+                        "match": "(?i:\\b(COLOR|CONTENTS|DOL|DUL|OL|PAGE|SKIP|STYLE|SUMMARIZE|SUPPRESS|UL)\\b)",
+                        "name": "keyword.language.procreport.sas"
+                    },
+                    {
+                        "include": "#style"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\bCOMPUTE\\b\\s*(BEFORE|AFTER)?)",
+                "end": "\\b(endcomp)\\s*;",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procreport.compute.sas"
+                    }
+                },
+                "endCaptures": {
+                    "0":{
+                        "name": "keyword.language.procreport.compute.sas"
+                    }
+                },                
+                "patterns":[
+                    {
+                        "include": "#specialparser"  
+                    },
+                    {
+                        "include": "#dataassignment"
+                    },
+                    {
+                        "match": "(?i:\\b(COLOR|LINE|CONTENTS|DOL|DUL|OL|PAGE|SKIP|STYLE|SUMMARIZE|SUPPRESS|UL)\\b)",
+                        "name": "keyword.language.procreport.sas"
+                    },
+                    {
+                        "include": "#style"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(BY)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procreport.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(NOTSORTED|DESCENDING)\\b)",
+                        "name": "keyword.language.procreport.sas"
+                    }
+                ]
+            },
+            {
+                "match":"(?i:\\b(WHERE|FORMAT|COMPUTE|ENDCOMP|LINE|CALL +DEFINE|COLUMN|title\\d*|WEIGHT|FREQ|NOALIAS|(NO)?CENTER|(NO)?COMPLETECOLS|(NO)?COMPLETEROWS|(NO)?THREADS|(NO)?WINDOWS|PCTLDEF|(NO)?THREADS|(NO)?WINDOWS|CONTENTS|SPANROWS|STYLE|COMMAND|HELP|PROMPT|BOX|BYPAGENO|(NO)?CENTER|COLWIDTH|FORMCHAR|LS|MISSING|PANELS|SHOWALL|SPACING|WRAP|EXCLNPWGT|QMARKERS|QMETHOD|QNTLDEF|VARDEF|NAMED|NOHEADER|SPLIT|HEADLINE|HEADSKIP|LIST|NOEXEC|OUTREPT|PROFILE|REPORT)\\b)",
+                "name": "keyword.language.procreport.sas"
+            },
+            {
+                "include": "#style"
+            }      
+        ]
+    },
+    "procformat":{
+        "begin": "(?i:\\b(format)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "begin": "(?i:\\b(PICTURE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procformat.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "match": "(?i:\\b(mult|FILL|MULTIPLIER|NOEDIT|PREFIX|DATATYPE|DECSEP|DEFAULT|DIG3SEP|FUZZ|LANGUAGE|MAX|MIN|MULTILABEL|NOTSORTED|ROUND)\\b)",
+                        "name": "keyword.language.procformat.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(INVALUE|VALUE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procformat.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"  
+                    },
+                    {
+                        "include": "#format"
+                    },
+                    {
+                        "match": "(?i:\\b(DEFAULT|FUZZ|JUST|MAX|MIN|NOTSORTED|UPCASE)\\b)",
+                        "name": "keyword.language.procformat.sas"
+                    }
+                ]
+            },
+            {
+                "match":"(?i:\\b(select|title\\d*|EXCLUDE|INVALUE|FMTLIB|LIBRARY|LOCALE|MAXLABLEN|MAXSELEN|NOREPLACE|PAGE)\\b)",
+                "name": "keyword.language.procformat.sas"
+            }
+        ]
+    },
+    "proccompare":{
+        "begin": "(?i:\\b(compare)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(out|COMPARE|BASE|OUTSTATS)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.proccompare.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "begin": "(?i:\\b(BY|ID)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proccompare.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(NOTSORTED|DESCENDING)\\b)",
+                        "name": "keyword.language.proccompare.sas"
+                    }
+                ]
+            },
+            {
+                "match":"(?i:\\b(title\\d*|criteria|VAR|WITH|ALLOBS|ALLSTATS|ALLVARS|BRIEFSUMMARY|CRITERION|ERROR|FUZZ|LISTALL|LISTBASE|LISTBASEOBS|LISTBASEVAR|LISTCOMP|LISTCOMPOBS|LISTCOMPVAR|LISTEQUALVAR|LISTOBS|LISTVAR|MAXPRINT|METHOD|NODATE|NOMISSBASE|NOMISSCOMP|NOMISSING|NOPRINT|NOSUMMARY|NOTE|NOVALUES|OUTALL|OUTBASE|OUTCOMP|OUTDIF|OUTNOEQUAL|OUTPERCENT|PRINTALL|STATS|TRANSPOSE|WARNING)\\b)",
+                "name": "keyword.language.proccompare.sas"
+            }
+        ]
+    },
+    "proctranspose":{
+        "begin": "(?i:\\b(transpose)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(out|data)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.proctranspose.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "begin": "(?i:\\b(by)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proctranspose.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(NOTSORTED|DESCENDING)\\b)",
+                        "name": "keyword.language.proctranspose.sas"
+                    }
+                ]
+            },
+            {
+                "match":"(?i:\\b(WHERE|COPY|ID|IDLABEL|VAR|DELIMITER|INDB|LABEL|LET|NAME|PREFIX|SUFFIX)\\b)",
+                "name": "keyword.language.proctranspose.sas"
+            }
+        ]
+    },
+    "procsort":{
+        "begin": "(?i:\\b(sort)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(out|data|dupout|uniqueout|)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.procsort.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "begin": "(?i:\\b(by)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsort.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(NOTSORTED|DESCENDING)\\b)",
+                        "name": "keyword.language.procsort.sas"
+                    }
+                ]
+            },
+            {
+                "match":"(?i:\\b(ASCII|DATECOPY|FORCE|OVERWRITE|PRESORTED|REVERSE|SORTSIZE|TAGSORT|NODUPKEY|NOUNIQUEKEY|NOTHREADS|THREADS|NOTHREADS|NOEQUALS|EQUALS|DANISH|EBCDIC|FINNISH|NATIONAL|NORWEGIAN|POLISH|SWEDISH|SORTSEQ|KEYDESCENDING|ASCENDING)\\b)",
+                "name": "keyword.language.procsort.sas"
+            }
+        ]
+    },
+    "procmeans":{
+        "begin": "(?i:\\b(means)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns":[
+            {
+                "include": "#specialparser"
+            },
+            {
+                "begin": "(?i:\\b(by)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procmeans.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(NOTSORTED|DESCENDING)\\b)",
+                        "name": "keyword.language.procmeans.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(class)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procmeans.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(ASCENDING|DESCENDING|EXCLUSIVE|GROUPINTERNAL|MISSING|MLF|ORDER|PRELOADFMT)\\b)",
+                        "name": "keyword.language.procmeans.sas"
+                    }
+                ]
+            },
+            {
+                "match": "(?i:\\b(data|classdata)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.procmeans.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "begin": "(?i:\\b(output)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procmeans.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(out)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                        "captures": {
+                            "1":{
+                                "name": "keyword.language.procmeans.sas"
+                            },
+                            "2":{
+                                "name": "entity.name.library.sas"
+                            },
+                            "4":{
+                                "name": "variable.variable.dataset.language.sas"
+                            }
+                        }
+                    },
+                    {
+                        "match": "(?i:\\b(OUT|MAX|N|MIN|MEAN|CSS|CV|MODE|MEDIAN|KURT|NMISS|P1|P50|Q1|P75|PRT|STD|RANGE|SKEW|STDERR|SUM|SUMWGT|VAR|Q3|T|AUTOLABEL|AUTONAME|KEEPLEN|LEVELS|NOINHERIT|WAYS)\\b)",
+                        "name": "keyword.language.procmeans.sas"
+                    }
+                ]
+            },
+            {
+                "match": "(?i:\\b(FORMAT|ID|WHERE|FREQUENCY|FREQ|ID|WEIGHT|WAY|TYPES|VAR|VARS|VARIABLE|VARIABLES|WGT)\\b)",
+                "name": "keyword.language.procmeans.sas"
+            }
+            ,
+            {
+                "match": "(?i:\\b(ALPHA|CHARTYPE|CLASSDATA|COMPLETETYPES|DESCENDTYPES|DESCENDING|DESCEND|EXCLNPWGT|EXCLNPWGTS|EXCLUSIVE|FW|IDMIN|MAXDEC|MISSING|NONOBS|PRINT|NOPRINT|THREADS|NOTHREADS|NOTRAP|NWAY|ORDER|QNTLDEF|PCTLDEF|PRINTALLTYPES|PRINTALL|PRINTIDVARS|PRINTIDS|QMARKERS|QMETHOD|SUMSIZE|VARDEF|CSS|CV|KURTOSIS|KURT|LCLM|MAX|MEAN|MIN|MODE|N|NMISS|RANGE|SKEWNESS|SKEW|STD|STDDEV|STDERR|SUM|SUMWGT|UCLM|USS|VAR|MEDIAN|P50|P1|P5|P10|Q1|P25|Q3|P75|P90|P95|P99|QRANGE|PROBT|PRT|T)\\b)",
+                "name": "keyword.language.procmeans.sas"
+            }
+        ]
+    }
+},
+"scopeName": "source.sas"
 }
