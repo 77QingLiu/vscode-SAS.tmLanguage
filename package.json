@@ -28,6 +28,16 @@
                 "uiTheme": "vs",
                 "path": "./themes/SAS theme-color-theme.json"
             }
+        ],
+        "snippets": [
+            {
+                "language": "sas",
+                "path": "./snippets/sas.json"
+            },
+            {
+                "language": "sas",
+                "path": "./snippets/function.json"
+            }
         ]
     }
 }
