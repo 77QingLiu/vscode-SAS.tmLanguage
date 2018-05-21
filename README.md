@@ -1,6 +1,7 @@
 # SAS Language Definition for VSCode
 
-This package provides syntax highlighting for the SAS files in VsCode. The syntax highlighting uses tmLanguage files sourced from https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json. 
+ Syntax highlighting for the SAS files in VsCode, with SAS like theme and precise syntax match. 
+ The syntax highlighting uses tmLanguage files sourced from https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json. 
 
 
 ## Features
@@ -11,11 +12,11 @@ This package provides syntax highlighting for the SAS files in VsCode. The synta
 ## Extension Settings
 
 
-### For more information
+## For more information
 
 **Enjoy!**
 
-### TO-DO
+## TO-DO
 - [ ] Add code snippets
 - [ ] More proc grammer into syntax and the corresponding snippets
     - [ ] CATALOG
@@ -30,4 +31,11 @@ This package provides syntax highlighting for the SAS files in VsCode. The synta
     - [ ] FREQ
     - [ ] CORR
     - [ ] UNIVARIATE
+    - [ ] ANOVA
+    - [ ] CLUSTER
+    - [ ] FACTOR
+    - [ ] REG
+    - [ ] SURVEYSELECT
+    - [ ] LOGISTIC
+    - [ ] LIFETEST
     - [X] TRANSPOSE
