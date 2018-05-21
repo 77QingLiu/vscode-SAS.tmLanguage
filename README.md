@@ -14,3 +14,20 @@ This package provides syntax highlighting for the SAS files in VsCode. The synta
 ### For more information
 
 **Enjoy!**
+
+### TO-DO
+- [ ] Add code snippets
+- [ ] More proc grammer into syntax and the corresponding snippets
+    - [ ] CATALOG
+    - [ ] CONTENTS
+    - [ ] DATASETS
+    - [ ] EXPORT
+    - [ ] IMPORT
+    - [ ] SGPLOT
+    - [ ] TEMPLATE
+    - [ ] PRINT
+    - [ ] RANK
+    - [ ] FREQ
+    - [ ] CORR
+    - [ ] UNIVARIATE
+    - [X] TRANSPOSE
