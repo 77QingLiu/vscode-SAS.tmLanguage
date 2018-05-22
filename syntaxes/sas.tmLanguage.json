@@ -493,7 +493,7 @@
     },
     "procstep":{
         "begin": "(?i:\\b(proc)\\b)",
-        "end": "(?i:\\b(run)\\b)",
+        "end": "(?i:\\b(run|quit)\\b)",
         "beginCaptures": {
             "0":{
                 "name": "storage.type.class.sas"
@@ -515,6 +515,15 @@
     },
     "procsteplist":{
         "patterns":[
+            {
+                "include": "#procdatasets"
+            },
+            {
+                "include": "#proccontents"
+            },
+            {
+                "include": "#proccatalog"
+            },
             {
                 "include": "#procreport"
             },
@@ -552,6 +561,88 @@
             }
         ]
     },
+    "procdatasets":{
+        "begin": "(?i:\\b(datasets)\\b)",
+        "end": "(?i:\\b((?=quit))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(BASE||DATA|OUT)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.proccompare.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "match":"(?i:\\b(lib|run|title\\d*|ALTER|(NO)?DETAILS|ENCRYPTKEY|FORCE|GENNUM|KILL|LIBRARY|MEMTYPE|NOLIST|NOPRINT|NOWARN|PW|READ|AGE|APPEND|ATTRIB|AUDIT|CHANGE|CONTENTS|COPY|DELETE|EXCHANGE|EXCLUDE|FORMAT|IC CREATE|IC DELETE|IC REACTIVATE|INDEX CENTILES|INDEX CREATE|INDEX DELETE|INFORMAT|INITIATE|LABEL|LOG|MODIFY|REBUILD|RENAME|REPAIR|RESUME|SAVE|SELECT|SUSPEND|TERMINATE|USER_VAR|XATTR ADD|XATTR DELETE|XATTR OPTIONS|XATTR REMOVE|XATTR SET|XATTR UPDATE|ALTER|MEMTYPE|APPENDVER|ENCRYPTKEY|FORCE|GETSORT|AUDIT_ALL|ADMIN_IMAGE|BEFORE_IMAGE|DATA_IMAGE|ERROR_IMAGE|VARNUM|SHORT|ORDER|NOPRINT|NODETAILS|NODS|FMTLEN|DIRECTORY|CENTILES|(NO)?CLONE|CONSTRAINT|DATECOPY|INDEX|MOVE|OVERRIDE|CORRECTENCODING|ENCRYPTKEY|DTC|GENMAX|GENNUM|LABEL|SORTEDBY|TYPE|WRITE)\\b)",
+                "name": "keyword.language.procdatasets.sas"
+            }   
+        ]
+    },    
+    "proccontents":{
+        "begin": "(?i:\\b(contents)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(DATA|OUT)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.proccompare.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "match":"(?i:\\b(title\\d*)\\b)",
+                "name": "keyword.language.proccontents.sas"
+            }   
+        ]
+    },    
+    "proccatalog":{
+        "begin": "(?i:\\b(catalog)\\b)",
+        "end": "(?i:\\b((?=quit))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match":"(?i:\\b(title\\d*|run|select|catalog|contents|exclude|copy|CHANGE|EXCHANGE|DELETE|MODIFY|SAVE|ENTRYTYPE|FORCE|KILL)\\b)",
+                "name": "keyword.language.proccatalog.sas"
+            }   
+        ]
+    },
     "procprintto":{
         "begin": "(?i:\\b(printto)\\b)",
         "end": "(?i:\\b((?=run))\\b)",
@@ -581,6 +672,20 @@
         "patterns": [
             {
                 "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(DATA|OUT|OUTREPT)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.proccompare.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
             },
             {
                 "begin": "(?i:\\b(DEFINE)\\b)",

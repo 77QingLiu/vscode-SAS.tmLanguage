@@ -23,9 +23,9 @@ Calling out known issues can help limit users opening duplicate issues against y
 ## TO-DO
 - [ ] Add code snippets
 - [ ] More proc grammer into syntax and the corresponding snippets
-    - [ ] CATALOG
-    - [ ] CONTENTS
-    - [ ] DATASETS
+    - [x] CATALOG
+    - [x] CONTENTS
+    - [x] DATASETS
     - [ ] EXPORT
     - [ ] IMPORT
     - [ ] SGPLOT

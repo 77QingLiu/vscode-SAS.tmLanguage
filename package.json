@@ -37,6 +37,10 @@
             {
                 "language": "sas",
                 "path": "./snippets/function.json"
+            },
+            {
+                "language": "sas",
+                "path": "./snippets/proc.json"
             }
         ]
     }

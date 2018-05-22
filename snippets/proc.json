@@ -1,0 +1,18 @@
+{
+    "proc contents":{
+        "prefix": "contents",
+        "body":[
+            "proc contents data=$1;",
+            "run;\n"
+        ],
+        "description": "proc contents"
+    },
+    "proc datasets":{
+        "prefix": "datasets",
+        "body":[
+            "proc datasets lib=$1 memtype=data",
+            "run;\nquit;\n"
+        ],
+        "description": "proc datasets"
+    }    
+}
