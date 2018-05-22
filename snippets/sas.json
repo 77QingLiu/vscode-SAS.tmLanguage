@@ -1,10 +1,10 @@
 {
-    "Print to console": {
+    "data step": {
         "prefix": "data",
         "body": [
             "DATA $1;",
             "\t$2",
-            "RUN;"
+            "RUN;\n"
         ],
         "description": "data step"
     },
@@ -23,5 +23,18 @@
             "*--------------------------------------------------------------------------------------------------;"
         ],
         "description": "section comments"
+    },
+    "proc format":{
+        "prefix": "fmt",
+        "body":[
+            "PROC FORMAT;",
+            "\tvalue ${1:txtfmt}",
+            "\t\"$2\" = \"$3\"",
+            "\t\"$4\" = \"$5\"",
+            "\t\"$6\" = \"$7\"",
+            "\t;",
+            "RUN;\n$0"
+        ],
+        "description": "proc fromat"
     }
 }
