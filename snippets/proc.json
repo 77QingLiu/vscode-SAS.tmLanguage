@@ -2,17 +2,26 @@
     "proc contents":{
         "prefix": "contents",
         "body":[
-            "proc contents data=$1;",
-            "run;\n"
+            "PROC CONTENTS data=$1;",
+            "RUN;\n"
         ],
         "description": "proc contents"
     },
     "proc datasets":{
         "prefix": "datasets",
         "body":[
-            "proc datasets lib=$1 memtype=data",
-            "run;\nquit;\n"
+            "PROC DATASETS lib=$1 memtype=data nolist nodetails kill",
+            "RUN;\nQUIT;\n"
         ],
         "description": "proc datasets"
-    }    
+    },
+    "proc export":{
+        "prefix": "export",
+        "body":[
+            "PROC EXPORT data=$1 outfile=\"$2\" DBMS=$3 replace;",
+            "\tputnames=NO;",
+            "RUN;\n"
+        ],
+        "description": "proc datasets"
+    }
 }

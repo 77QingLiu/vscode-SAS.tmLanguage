@@ -516,6 +516,9 @@
     "procsteplist":{
         "patterns":[
             {
+                "include": "#procexport"
+            },
+            {
                 "include": "#procdatasets"
             },
             {
@@ -561,6 +564,38 @@
             }
         ]
     },
+    "procexport":{
+        "begin": "(?i:\\b(EXPORT)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(DATA)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.procexport.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "match":"(?i:\\b(OUTFILE|OUTTABLE|DBMS|REPLACE|LABEL|DELIMITER|PUTNAMES|DBENCODING|FMTLIB|META)\\b)",
+                "name": "keyword.language.procexport.sas"
+            }   
+        ]
+    },
     "procdatasets":{
         "begin": "(?i:\\b(datasets)\\b)",
         "end": "(?i:\\b((?=quit))\\b)",
@@ -574,10 +609,10 @@
                 "include": "#specialparser"
             },
             {
-                "match": "(?i:\\b(BASE||DATA|OUT)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "match": "(?i:\\b(BASE|DATA|OUT)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
                 "captures": {
                     "1":{
-                        "name": "keyword.language.proccompare.sas"
+                        "name": "keyword.language.procdatasets.sas"
                     },
                     "2":{
                         "name": "entity.name.library.sas"

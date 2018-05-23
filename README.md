@@ -26,7 +26,7 @@ Calling out known issues can help limit users opening duplicate issues against y
     - [x] CATALOG
     - [x] CONTENTS
     - [x] DATASETS
-    - [ ] EXPORT
+    - [x] EXPORT
     - [ ] IMPORT
     - [ ] SGPLOT
     - [ ] TEMPLATE
