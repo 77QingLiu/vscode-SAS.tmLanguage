@@ -27,10 +27,10 @@ Calling out known issues can help limit users opening duplicate issues against y
     - [x] CONTENTS
     - [x] DATASETS
     - [x] EXPORT
-    - [ ] IMPORT
+    - [x] IMPORT
     - [ ] SGPLOT
     - [ ] TEMPLATE
-    - [ ] PRINT
+    - [x] PRINT
     - [ ] RANK
     - [ ] FREQ
     - [ ] CORR

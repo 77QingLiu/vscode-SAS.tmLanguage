@@ -23,5 +23,13 @@
             "RUN;\n"
         ],
         "description": "proc datasets"
+    },
+    "proc print":{
+        "prefix": "print",
+        "body":[
+            "PROC PRINT data=$1;",
+            "RUN;\n"
+        ],
+        "description": "proc print"
     }
 }
