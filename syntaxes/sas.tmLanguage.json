@@ -472,7 +472,7 @@
                 "include": "#specialparser"
             },
             {
-                "match": "(?i:\\b(create +table|separated +by|select|noprint|from|order +by|group +by|having|into|when|case|else|length|format|label|then|where|keep|drop|end|(left|right|inner) +join|union( +corr| +all)|except( +corr| +all))\\b)",
+                "match": "(?i:\\b(informat|num|insert|values|title\\d*|create +table|separated +by|select|noprint|from|order +by|group +by|having|into|when|case|else|length|format|label|then|where|keep|drop|end|(left|right|inner) +join|union( +corr| +all)|except( +corr| +all))\\b)",
                 "name": "keyword.other.sql"
             },
             {
