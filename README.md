@@ -13,8 +13,7 @@
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
+![](http://p7ffgka2w.bkt.clouddn.com/18-5-29/45409378.jpg)
 
 ## For more information
 
