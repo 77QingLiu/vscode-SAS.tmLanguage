@@ -1,4 +1,15 @@
 {
+    "proc sql":{
+        "prefix": "sql",
+        "body":[
+            "PROC SQL noprint;",
+            "\tcreate table $1 as",
+            "\tselect $2",
+            "\tfrom $3;",
+            "QUIT;\n"
+        ],
+        "description": "proc sql"
+    },
     "proc contents":{
         "prefix": "contents",
         "body":[
