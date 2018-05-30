@@ -31,5 +31,24 @@
             "RUN;\n"
         ],
         "description": "proc print"
+    },
+    "proc rank":{
+        "prefix": "rank",
+        "body":[
+            "PROC RANK data=$1 out=$2;",
+            "\tvar $3;",
+            "\tranks $4;",
+            "RUN;\n"
+        ],
+        "description": "proc rank"
+    },
+    "proc freq":{
+        "prefix": "freq",
+        "body":[
+            "PROC FREQ data=$1;",
+            "\ttables $2/nocol nocum norow;",
+            "RUN;\n"
+        ],
+        "description": "proc freq"
     }
 }

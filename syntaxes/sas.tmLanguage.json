@@ -55,7 +55,7 @@
                 ,
                 {
                     "name": "keyword.language.ods.sas",
-                    "match": "(?i:\\b(FILE|ID|ANCHOR|ARCHIVE|ATTRIBUTES|BASE|BODY|CHARSET|CLOSE|CODE|CODEBASE|CONTENTS|CSSSTYLE|DOM|ENCODING|EVENT|EXCLUDE +(ALL|NONE)?|FRAME|GFOOTNOTE|NOGFOOTNOTE|GPATH|GTITLE|NOGTITLE|HEADTEXT|METATEXT|NEWFILE|OPTIONS|PAGE|PARAMETERS|PATH|RECORD_SEPARATOR|SELECT +(ALL|NONE)?|SHOW|STYLE|STYLESHEET|TEXT|TRANTAB)\\b)"
+                    "match": "(?i:\\b(FILE|ID|ON|OFF|ANCHOR|ARCHIVE|ATTRIBUTES|BASE|BODY|CHARSET|CLOSE|CODE|CODEBASE|CONTENTS|CSSSTYLE|DOM|ENCODING|EVENT|EXCLUDE +(ALL|NONE)?|FRAME|GFOOTNOTE|NOGFOOTNOTE|GPATH|GTITLE|NOGTITLE|HEADTEXT|METATEXT|NEWFILE|OPTIONS|PAGE|PARAMETERS|PATH|RECORD_SEPARATOR|SELECT +(ALL|NONE)?|SHOW|STYLE|STYLESHEET|TEXT|TRANTAB)\\b)"
                 }
             ]
         },
@@ -516,6 +516,12 @@
     "procsteplist":{
         "patterns":[
             {
+                "include": "#procfreq"
+            },
+            {
+                "include": "#procrank"
+            },
+            {
                 "include": "#procprint"
             },
             {
@@ -567,6 +573,174 @@
             }
         ]
     },
+    "procfreq":{
+        "begin": "(?i:\\b(freq)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(DATA)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.procfreq.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "begin": "(?i:\\b(BY)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procfreq.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(NOTSORTED|DESCENDING)\\b)",
+                        "name": "keyword.language.procfreq.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(EXACT)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procfreq.exact.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(AGREE|BARNARD|BINOMIAL|BIN|CHISQ|COMOR|EQOR|ZELEN|FISHER|JT|KAPPA|KENTB|TAUB|LRCHI|MCNEM|MEASURES|MHCHI|ODDSRATIO|OR|PCHI|PCORR|RELRISK|COLUMN|METHOD|RISKDIFF|SCORR|SMDCR|SMDRC|STUTC|TAUC|TREND|WTKAP|WTKAPPA|ALPHA|MAXTIME|MC|MIDP|N|PFORMAT|POINT|SEED)\\b)",
+                        "name": "keyword.language.procfreq.exact.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(output)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procfreq.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(out)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                        "captures": {
+                            "1":{
+                                "name": "keyword.language.procfreq.output.sas"
+                            },
+                            "2":{
+                                "name": "entity.name.library.output.sas"
+                            },
+                            "4":{
+                                "name": "variable.variable.dataset.language.sas"
+                            }
+                        }
+                    },
+                    {
+                        "match": "(?i:\\b(AGREE|AJCHI|ALL|BDCHI|BINOMIAL|BIN|CHISQ|CMH|CMH1|CMH2|CMHCOR|CMHGA|CMHRMS|COCHQ|CONTGY|CRAMV|EQKAP|EQOR|ZELEN|EQWKP|FISHER|GAMMA|GAILSIMON|GS|JT|KAPPA|KENTB|TAUB|LAMCR|LAMDAS|LAMRC|LGOR|LGRRC1|LGRRC2|LRCHI|MCNEM|MEASURES|MHCHI|MHOR|COMOR|MHRRC1|MHRRC2|N|NMISS|ODDSRATIO|OR|PROR|PCHI|PCORR|PHI|PLCORR|RDIF1|RDIF2|RELRISK|RISKDIFF|RISKDIFF1|RISKDIFF2|RRC2|RRC1|RI?SK1|RI?SK11|RI?SK12|RI?SK2|RI?SK21|RI?SK22|SCORR|SMDCR|SMDRC|STUTC|TAUC|TREND|TSYMM|BOWKER|UCR|U|URC|WTKAP|WTKAPPA)\\b)",
+                        "name": "keyword.language.procfreq.output.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(TABLES)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procfreq.table.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(AGREE|AGREEPLOT|ALL|CUMFREQPLOT|DEVIATIONPLOT|FREQPLOT|KAPPAPLOT|MOSAICPLOT|COLORSTAT|SQUARE|NONE|ODDSRATIOPLOT|RELRISKPLOT|RISKDIFFPLOT|WTKAPPAPLOT|ONLY|CL|CLDISPLAY|COLUMN|COMMON|EXACT|GROUPBY|LOGBASE|LEGEND|NOSTAT|NPANELPOS|ORDER|ORIENT|PARTIAL|RANGE|SCALE|SHOWSCALE|STATS|TWOWAY|TYPE|PRINTKWTS|WT|ALL|ALPHA|BINOMIAL|BIN|CL|AGRESTICOULL|AC|BLAKER|EXACT|CLOPPERPEARSON|LIKELIHOODRATIO|JEFFREYS|LR|LOGIT|MIDP|WALD|WILSON|SCORE|CORRECT|EQUIV|EQUIVALENCE|LEVEL|MARGIN|NONINF|NONINFERIORITY|OUTLEVEL|P|SUP|SUPERIORITY|VAR|CELLCHI2|CHISQ|DF|LRCHI|TESTF|TESTP|WARN|CL|CMH|CMH1|CMH2|FISHER|GAILSIMON|JT|MEASURES|MISSING|OR|PLCORR|RELRISK|RISKDIFF|SCORES|TREND|CUMCOL|CELLCHI2|DEVIATION|EXPECTED|MISSPRINT|PEARSONRES|PRINTKWTS|SCOROUT|SPARSE|STDRES|TOTPCT|CONTENTS|CROSSLIST|FORMAT|LIST|MAXLEVELS|NOCOL|NOCUM|NOFREQ|NOPERCENT|NOPRINT|NOROW|NOSPARSE|NOWARN|PLOTS|OUT|OUTCUM|OUTEXPECT|OUTPCT)\\b)",
+                        "name": "keyword.language.procfreq.table.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(test)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procfreq.test.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(AGREE|KAPPA|KENTB|TAUB|MEASURES|PCORR|PLCORR|SCORR|SMDCR|SMDRC|STUTC|TAUC|WTKAP|WTKAPPA)\\b)",
+                        "name": "keyword.language.procfreq.test.sas"
+                    }
+                ]
+            },
+            {
+                "match":"(?i:\\b(WHERE|format|pageby|sumby|TITLE\\d*|FOOTNOTE\\d*|COMPRESS|FORMCHAR|NLEVELS|NOPRINT|ORDER|PAGE|WEIGHT|ZEROS)\\b)",
+                "name": "keyword.language.procfreq.sas"
+            }
+        ]
+    },
+    "procrank":{
+        "begin": "(?i:\\b(rank)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(DATA|OUT)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.procrank.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "begin": "(?i:\\b(BY)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procrank.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(NOTSORTED|DESCENDING)\\b)",
+                        "name": "keyword.language.procrank.sas"
+                    }
+                ]
+            },
+            {
+                "match":"(?i:\\b(WHERE|format|pageby|sumby|TITLE\\d*|FOOTNOTE\\d*|VAR|RANKS|DESCENDING|FRACTION|GROUPS|NORMAL|NPLUS1|PRESERVERAWBYVALUES|PERCENT|SAVAGE|TIES)\\b)",
+                "name": "keyword.language.procrank.sas"
+            }
+        ]
+    },
     "procprint":{
         "begin": "(?i:\\b(print)\\b)",
         "end": "(?i:\\b((?=run))\\b)",
@@ -598,13 +772,13 @@
                 "end": ";",
                 "beginCaptures": {
                     "0":{
-                        "name": "keyword.language.proccompare.sas"
+                        "name": "keyword.language.procprint.sas"
                     }
                 },
                 "patterns":[
                     {
                         "match": "(?i:\\b(NOTSORTED|DESCENDING)\\b)",
-                        "name": "keyword.language.proccompare.sas"
+                        "name": "keyword.language.procprint.sas"
                     }
                 ]
             },

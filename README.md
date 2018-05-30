@@ -1,6 +1,6 @@
 # SAS Language Definition for VSCode
 
- Syntax highlighting for the SAS files in VsCode, with SAS like theme and precise syntax match. 
+ Syntax highlighting for the SAS files in VsCode, with precise syntax match, SAS like theme and code snippets. 
  The syntax highlighting uses tmLanguage files sourced from https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json. 
 
 
@@ -35,9 +35,9 @@ Syntax parse error if there are unmatched `'` or `"` even if being marked by mac
     - [ ] SGPLOT
     - [ ] TEMPLATE
     - [x] PRINT
-    - [ ] RANK
-    - [ ] FREQ
-    - [ ] CORR
+    - [x] RANK
+    - [x] FREQ
+    - [x] CORR
     - [ ] UNIVARIATE
     - [ ] ANOVA
     - [ ] CLUSTER
@@ -47,3 +47,11 @@ Syntax parse error if there are unmatched `'` or `"` even if being marked by mac
     - [ ] LOGISTIC
     - [ ] LIFETEST
     - [X] TRANSPOSE
+    - [ ] ANOVA 
+    - [ ] APPEND 
+    - [ ] CPORT
+    - [ ] FASTCLUS
+    - [ ] GLM
+    - [ ] MIXED
+    - [ ] NPAR1WAY
+    - [ ] TTEST

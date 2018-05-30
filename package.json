@@ -12,13 +12,13 @@
     ],
     "contributes": {
         "languages": [{
-            "id": "sas",
-            "aliases": ["sas", "sas"],
+            "id": "SAS",
+            "aliases": ["SAS", "Statistical Analysis System"],
             "extensions": [".sas"],
             "configuration": "./language-configuration.json"
         }],
         "grammars": [{
-            "language": "sas",
+            "language": "SAS",
             "scopeName": "source.sas",
             "path": "./syntaxes/sas.tmLanguage.json"
         }],
@@ -31,15 +31,15 @@
         ],
         "snippets": [
             {
-                "language": "sas",
+                "language": "SAS",
                 "path": "./snippets/sas.json"
             },
             {
-                "language": "sas",
+                "language": "SAS",
                 "path": "./snippets/function.json"
             },
             {
-                "language": "sas",
+                "language": "SAS",
                 "path": "./snippets/proc.json"
             }
         ]
