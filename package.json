@@ -2,7 +2,7 @@
     "name": "sas-syntax",
     "displayName": "SAS-Syntax",
     "description": "syntax highlihter for SAS",
-    "version": "1.0.1",
+    "version": "1.0.3",
     "publisher": "77qingliu",
     "repository": "https://github.com/77QingLiu/vscode-SAS.tmLanguage",
     "icon": "icon.png",
@@ -12,9 +12,9 @@
         "url": "https://github.com/77qingliu"
     },
     "galleryBanner": {
-		"color": "#00BFFF",
-		"theme": "dark"
-	},
+        "color": "#ADD8E6",
+        "theme": "dark"
+    },
     "bugs": {
         "url": "https://github.com/pvparuchuri/vscode-SAS.tmLanguage/issues"
     },
