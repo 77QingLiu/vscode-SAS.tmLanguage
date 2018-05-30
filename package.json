@@ -2,7 +2,7 @@
     "name": "sas-syntax",
     "displayName": "SAS-Syntax",
     "description": "syntax highlihter for SAS",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "publisher": "qing",
     "engines": {
         "vscode": "^1.20.0"
@@ -11,17 +11,26 @@
         "Programming Languages"
     ],
     "contributes": {
-        "languages": [{
-            "id": "SAS",
-            "aliases": ["SAS", "Statistical Analysis System"],
-            "extensions": [".sas"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "SAS",
-            "scopeName": "source.sas",
-            "path": "./syntaxes/sas.tmLanguage.json"
-        }],
+        "languages": [
+            {
+                "id": "SAS",
+                "aliases": [
+                    "SAS",
+                    "Statistical Analysis System"
+                ],
+                "extensions": [
+                    ".sas"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "SAS",
+                "scopeName": "source.sas",
+                "path": "./syntaxes/sas.tmLanguage.json"
+            }
+        ],
         "themes": [
             {
                 "label": "SAS Theme",
