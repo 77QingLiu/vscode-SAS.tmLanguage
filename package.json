@@ -2,17 +2,21 @@
     "name": "sas-syntax",
     "displayName": "SAS-Syntax",
     "description": "syntax highlihter for SAS",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "publisher": "77qingliu",
     "repository": "https://github.com/77QingLiu/vscode-SAS.tmLanguage",
     "icon": "icon.png",
-	"homepage": "https://github.com/77QingLiu/vscode-SAS.tmLanguage",
+    "homepage": "https://github.com/77QingLiu/vscode-SAS.tmLanguage",
     "author": {
-		"name": "Qing Liu",
-		"url": "https://github.com/77qingliu"
+        "name": "Qing Liu",
+        "url": "https://github.com/77qingliu"
     },
-    "bugs": { 
-        "url": "https://github.com/pvparuchuri/vscode-SAS.tmLanguage/issues" 
+    "galleryBanner": {
+		"color": "#00BFFF",
+		"theme": "dark"
+	},
+    "bugs": {
+        "url": "https://github.com/pvparuchuri/vscode-SAS.tmLanguage/issues"
     },
     "engines": {
         "vscode": "^1.20.0"
