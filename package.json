@@ -3,12 +3,23 @@
     "displayName": "SAS-Syntax",
     "description": "syntax highlihter for SAS",
     "version": "1.0.0",
-    "publisher": "qing",
+    "publisher": "77qingliu",
+    "repository": "https://github.com/77QingLiu/vscode-SAS.tmLanguage",
+    "icon": "icon.png",
+	"homepage": "https://github.com/77QingLiu/vscode-SAS.tmLanguage",
+    "author": {
+		"name": "Qing Liu",
+		"url": "https://github.com/77qingliu"
+    },
+    "bugs": { 
+        "url": "https://github.com/pvparuchuri/vscode-SAS.tmLanguage/issues" 
+    },
     "engines": {
         "vscode": "^1.20.0"
     },
     "categories": [
-        "Programming Languages"
+        "Programming Languages",
+        "Snippets"
     ],
     "contributes": {
         "languages": [
