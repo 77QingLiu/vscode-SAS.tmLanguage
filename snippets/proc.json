@@ -50,5 +50,23 @@
             "RUN;\n"
         ],
         "description": "proc freq"
+    },
+    "proc corr":{
+        "prefix": "corr",
+        "body":[
+            "PROC CORR data=$1;",
+            "\tvar $2;",
+            "RUN;\n"
+        ],
+        "description": "proc freq"
+    },
+    "proc univariate":{
+        "prefix": "univariate",
+        "body":[
+            "PROC UNIVARIATE data=$1 noprint;",
+            "\tvar $2;",
+            "RUN;\n"
+        ],
+        "description": "proc univariate"
     }
 }

@@ -36,7 +36,7 @@ Syntax parse error if there are unmatched `'` or `"` even if being marked by mac
 **Enjoy!**
 
 ## TO-DO
-- [ ] Add code snippets
+- [x] Add code snippets
 - [ ] More proc grammer into syntax and the corresponding snippets
     - [x] CATALOG
     - [x] CONTENTS
@@ -49,7 +49,7 @@ Syntax parse error if there are unmatched `'` or `"` even if being marked by mac
     - [x] RANK
     - [x] FREQ
     - [x] CORR
-    - [ ] UNIVARIATE
+    - [x] UNIVARIATE
     - [ ] ANOVA
     - [ ] CLUSTER
     - [ ] FACTOR

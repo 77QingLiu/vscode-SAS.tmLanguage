@@ -516,6 +516,12 @@
     "procsteplist":{
         "patterns":[
             {
+                "include": "#procunivariate"
+            },
+            {
+                "include": "#proccorr"
+            },
+            {
                 "include": "#procfreq"
             },
             {
@@ -570,6 +576,210 @@
             {
                 "match": "(?i:\\b(ACCESS|ACECLUS|ADAPTIVEREG|ALLELE|ANOM|ANOVA|APPEND|ARIMA|AUTHLIB|AUTOREG|BOM|BOXPLOT|BTL|CALENDAR|CALIS|CALLRFC|CANCORR|CANDISC|CAPABILITY|CASECONTROL|CATALOG|CATMOD|CHART|CIMPORT|CLP|CLUSTER|COMPARE|COMPUTAB|CONTENTS|CONVERT|COPY|CORR|CORRESP|COUNTREG|CPM|CPORT|CUSUM|DATASETS|DATASOURCE|DBF|DBLOAD|DEFINE_EVENT|DEFINE_TAGSET|DELETE|DIF|DISCRIM|DISPLAY|DISTANCE|DOCUMENT|DQMATCH|DQSCHEME|DQSRVADM|DQSRVSVC|DS2|DSTRANS|DTREE|ENTROPY|ESM|EXPAND|EXPLODE|EXPORT|FACTEX|FACTOR|FAMILY|FASTCLUS|FCMP|FEDSQL|FMM|FONTREG|FORECAST|FORMAT|FORMS|FREQ|FSBROWSE|FSEDIT|FSLETTER|FSLIST|FSVIEW|G3D|G3GRID|GA|GAM|GANNO|GANTT|GAREABAR|GBARLINE|GCHART|GCONTOUR|GDEVICE|GENESELECT|GENMOD|GEOCODE|GFONT|GIMPORT|GINSIDE|GKEYMAP|GKPI|GLIMMIX|GLM|GLMMOD|GLMPOWER|GLMSELECT|GMAP|GOPTIONS|GPLOT|GPROJECT|GRADAR|GREDUCE|GREMOVE|GREPLAY|GROOVY|GSLIDE|GTESTIT|GTILE|HADOOP|HAPLOTYPE|HP4SCORE|HPBIN|HPCLUS|HPCORR|HPCOUNTREG|HPDECIDE|HPDMDB|HPDS2|HPF|HPFARIMASPEC|HPFDIAGNOSE|HPFENGINE|HPFESMSPEC|HPFEVENTS|HPFEXMSPEC|HPFIDMSPEC|HPFOREST|HPFSELECT|HPFUCMSPEC|HPGENSELECT|HPIMPUTE|HPLMIXED|HPLOGISTIC|HPLSO|HPMIXED|HPNEURAL|HPNLIN|HPNLMOD|HPQLIM|HPREDUCE|HPREG|HPSAMPLE|HPSEVERITY|HPSPLIT|HPSUMMARY|HPTMINE|HPTMSCORE|HTSNP|HTTP|IML|IMPORT|IMSTAT|INBREED|INFOMAPS|INTPOINT|ISHIKAWA|JSON|KDE|KRIGE2D|LATTICE|LIFEREG|LIFETEST|LOAN|LOESS|LOGISTIC|LP|MACONTROL|MACRO|MAPIMPORT|MCMC|MDC|MDS|MEANS|METADATA|MI|MIANALYZE|MIGRATE|MIXED|MODECLUS|MODEL|MULTTEST|NESTED|NETDRAW|NETFLOW|NLIN|NLMIXED|NLP|NPAR1WAY|ODS|OLAP|OPERATE|OPTEX|OPTGRAPH|OPTIONS|OPTLOAD|OPTLP|OPTMILP|OPTMODEL|OPTQP|OPTSAVE|ORTHOREG|PANEL|PARETO|PDLREG|PHREG|PLAN|PLM|PLOT|PLS|PM|PMENU|POWER|PRESENV|PRINCOMP|PRINQUAL|PRINT|PRINTTO|PROBIT|PROTO|PRTDEF|PRTEXP|PSMOOTH|PWENCODE|QDEVICE|QLIM|QUANTLIFE|QUANTREG|QUANTSELECT|RANK|REG|REGISTRY|RELIABILITY|REPORT|ROBUSTREG|RSREG|SCAPROC|SCORE|SEQDESIGN|SEQTEST|SERVER|SEVERITY|SGDESIGN|SGPANEL|SGPLOT|SGRENDER|SGSCATTER|SHEWHART|SIM2D|SIMILARITY|SIMLIN|SIMNORMAL|SOAP|SORT|SPECTRA|SQL|STANDARD|STATESPACE|STATGRAPH|STDIZE|STDRATE|STEPDISC|STP|STREAM|SUMMARY|SURVEYFREQ|SURVEYLOGISTIC|SURVEYMEANS|SURVEYPHREG|SURVEYREG|SURVEYSELECT|SYSLIN|TABULATE|TCALIS|TEMPLATE|TIMEID|TIMEPLOT|TIMESERIES|TPSPLINE|TRANS|TRANSPOSE|TRANSREG|TRANTAB|TREE|TSCSREG|TTEST|UCM|UNIVARIATE|VARCLUS|VARCOMP|VARIOGRAM|VARMAX|X11|X12|XSL)\\b)",
                 "name": "storage.type.function.sas"
+            }
+        ]
+    },
+    "procunivariate":{
+        "begin": "(?i:\\b(univariate)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(DATA)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.procunivariate.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "begin": "(?i:\\b(BY)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procunivariate.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(NOTSORTED|DESCENDING)\\b)",
+                        "name": "keyword.language.procunivariate.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(CDFPLOT)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procunivariate.cdfplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(BETA|EXPONENTIAL|GAMMA|GUMBEL|IGAUSS|LOGNORMAL|NORMAL|PARETO|POWER|RAYLEIGH|WEIBULL|COLOR|L|W|ALPHA|BETA|SIGMA|THETA|SIGMA|THETA|ALPHA|ALPHADELTA|ALPHAINITIAL|MAXITER|SIGMA|THETA|MU|SIGMA|LAMBDA|MU|SIGMA|THETA|ZETA|MU|SIGMA|ALPHA|SIGMA|THETA|ALPHA|SIGMA|THETA|SIGMA|THETA|C|ITPRINT|MAXITER|SIGMA|THETA|HREF|HREFLABELS|HREFLABPOS|NOECDF|NOHLABEL|NOVLABEL|NOVTICK|STATREF|STATREFLABELS|STATREFSUBCHAR|VAXISLABEL|VREF|VREFLABELS|VREFLABPOS|VSCALE|ANNOTATE|CAXIS|CFRAME|CHREF|CSTATREF|CTEXT|CVREF|DESCRIPTION|FONT|HAXIS|HEIGHT|HMINOR|INFONT|INHEIGHT|LHREF|LSTATREF|LVREF|NAME|NOFRAME|TURNVLABELS|VAXIS|VMINOR|WAXIS|ODSFOOTNOTE|ODSFOOTNOTE|ODSTITLE|ODSTITLE|OVERLAY|ANNOKEY|CFRAMESIDE|CFRAMETOP|CPROP|CTEXTSIDE|CTEXTTOP|INTERTILE|NCOLS|NROWS|CONTENTS)\\b)",
+                        "name": "keyword.language.procunivariate.cdfplot.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(output)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procunivariate.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(out)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                        "captures": {
+                            "1":{
+                                "name": "keyword.language.procunivariate.output.sas"
+                            },
+                            "2":{
+                                "name": "entity.name.library.output.sas"
+                            },
+                            "4":{
+                                "name": "variable.variable.dataset.language.sas"
+                            }
+                        }
+                    },
+                    {
+                        "match": "(?i:\\b(CSS|CV|GEOMEAN|KURTOSIS|KURT|MAX|MEAN|MIN|MODE|N|NMISS|NOBS|RANGE|SKEWNESS|SKEW|STD|STDDEV|STDMEAN|STDERR|SUM|SUMWGT|USS|VAR|P1|P5|P10|Q1|P25|MEDIAN|Q2|P50|Q3|P75|P90|P95|P99|QRANGE|GINI|MAD|QN|SN|STD_GINI|STD_MAD|STD_QN|STD_QRANGE|STD_SN|MSIGN|NORMALTEST|SIGNRANK|PROBM|PROBN|PROBS|PROBT|T|CIPCTLDF|CIQUANTDF|ALPHA|LOWERPRE|LOWERNAME|TYPE|UPPERPRE|UPPERNAME|ALPHA|LOWERPRE|LOWERNAME|TYPE|UPPERPRE|UPPERNAME|PCTLNAME|PCTLNDEC|PCTLPRE|PCTLPTS)\\b)",
+                        "name": "keyword.language.procunivariate.output.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(CLASS)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procunivariate.class.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(MISSING|ORDER|KEYLEVEL|NOKEYMOVE)\\b)",
+                        "name": "keyword.language.procunivariate.class.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(HISTOGRAM)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procunivariate.HISTOGRAM.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "match": "(?i:\\b(COLOR|hreflabel|CONTENTS|TO|BY|FILL|L|MIDPERCENTS|NOPRINT|PERCENTS|W|ALPHA|BETA|SIGMA|THETA|SIGMA|THETA|ALPHA|ALPHADELTA|ALPHAINITIAL|MAXITER|SIGMA|THETA|EDFNSAMPLES|EDFSEED|MU|SIGMA|EDFNSAMPLES|EDFSEED|LAMBDA|MU|SIGMA|THETA|ZETA|MU|SIGMA|EDFNSAMPLES|EDFSEED|ALPHA|SIGMA|THETA|ALPHA|SIGMA|THETA|EDFNSAMPLES|EDFSEED|SIGMA|THETA|DELTA|FITINTERVAL|FITMETHOD|FITTOLERANCE|GAMMA|SIGMA|THETA|DELTA|FITINTERVAL|FITMETHOD|FITTOLERANCE|GAMMA|OPTBOUNDRANGE|OPTMAXITER|OPTMAXSTARTS|OPTPRINT|OPTSEED|OPTTOLERANCE|SIGMA|THETA|C|ITPRINT|MAXITER|SIGMA|THETA|BARLABEL|CLIPCURVES|ENDPOINTS|GRID|HANGING|HREF|HREFLABELS|HREFLABPOS|MIDPOINTS|NENDPOINTS|NMIDPOINTS|NOBARS|NOHLABEL|NOPLOT|NOVLABEL|NOVTICK|RTINCLUDE|STATREF|STATREFLABELS|STATREFSUBCHAR|VAXISLABEL|VREF|VREFLABELS|VREFLABPOS|VSCALE|ANNOTATE|BARWIDTH|CAXIS|CBARLINE|CFILL|CFRAME|CGRID|CHREF|CLIPREF|CSTATREF|CTEXT|CVREF|DESCRIPTION|FONT|FRONTREF|HAXIS|HEIGHT|HMINOR|HOFFSET|INFONT|INHEIGHT|INTERBAR|LGRID|LHREF|LSTATREF|LVREF|NAME|NOFRAME|PFILL|TURNVLABELS|VAXIS|VMINOR|VOFFSET|WAXIS|WBARLINE|WGRID|ODSFOOTNOTE|ODSFOOTNOTE2|ODSTITLE|ODSTITLE2|OVERLAY|ANNOKEY|CFRAMESIDE|CFRAMETOP|CPROP|CTEXTSIDE|CTEXTTOP|INTERTILE|MAXNBIN|MAXSIGMAS|NCOLS|NROWS|CONTENTS|MIDPERCENTS|NOTABCONTENTS|OUTHISTOGRAM|OUTKERNEL|BETA|EXPONENTIAL|GAMMA|GUMBEL|IGAUSS|LOGNORMAL|NORMAL|PARETO|POWER|RAYLEIGH|SB|SU|WEIBULL)\\b)",
+                        "name": "keyword.language.procunivariate.HISTOGRAM.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(INSET)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procunivariate.inset.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "match": "(?i:\\b(CSS|CV|POS|hreflabel|GEOMEAN|KURTOSIS|KURT|MAX|MEAN|MIN|MODE|N|NEXCL|NMISS|NOBS|RANGE|SKEWNESS|SKEW|STD|STDDEV|STDMEAN|STDERR|SUM|SUMWGT|USS|VAR|P1|P5|P10|Q1|P25|MEDIAN|Q2|P50|Q3|P75|P90|P95|P99|QRANGE|P1_LCL_DF|P1_UCL_DF|P5_LCL_DF|P5_UCL_DF|P10_LCL_DF|P10_UCL_DF|Q1_LCL_DF|P25_LCL_DF|Q1_UCL_DF|P25_UCL_DF|MEDIAN_LCL_DF|Q2_LCL_DF|P50_LCL_DF|MEDIAN_UCL_DF|Q2_UCL_DF|P50_UCL_DF|Q3_LCL_DF|P75_LCL_DF|Q3_UCL_DF|P75_UCL_DF|P90_LCL_DF|P90_UCL_DF|P95_LCL_DF|P95_UCL_DF|P99_LCL_DF|P99_UCL_DF|P1_LCL|P1_UCL|P5_LCL|P5_UCL|P10_LCL|P10_UCL|Q1_LCL|P25_LCL|Q1_UCL|P25_UCL|MEDIAN_LCL|Q2_LCL|P50_LCL|MEDIAN_UCL|Q2_UCL|P50_UCL|Q3_LCL|P75_LCL|Q3_UCL|P75_UCL|P90_LCL|P90_UCL|P95_LCL|P95_UCL|P99_LCL|P99_UCL|GINI|MAD|QN|SN|STD_GINI|STD_MAD|STD_QN|STD_QRANGE|STD_SN|MSIGN|NORMALTEST|PNORMAL|SIGNRANK|PROBM|PROBN|PROBS|PROBT|T|BETA|EXPONENTIAL|GAMMA|GUMBEL|IGAUSS|CDFPLOT|HISTOGRAM|PPPLOT|KERNEL|HISTOGRAM|LOGNORMAL|NORMAL|PARETO|POWER|RAYLEIGH|SB|HISTOGRAM|SU|HISTOGRAM|WEIBULL|WEIBULL2|PROBPLOT|QQPLOT|ALPHA|SHAPE1|BETA|SHAPE2|MEAN|SIGMA|SCALE|STD|THETA|THRESHOLD|MEAN|SIGMA|SCALE|STD|THETA|THRESHOLD|ALPHA|SHAPE|MEAN|SIGMA|SCALE|STD|THETA|THRESHOLD|MEAN|MU|SIGMA|SCALE|STD|LAMBDA|MEAN|MU|STD|AMISE|BANDWIDTH|BWIDTH|C|TYPE|MEAN|SIGMA|SHAPE|STD|THETA|THRESHOLD|ZETA|SCALE|MU|MEAN|SIGMA|STD|ALPHA|MEAN|SIGMA|SCALE|STD|THETA|THRESHOLD|ALPHA|MEAN|SIGMA|SCALE|STD|THETA|THRESHOLD|MEAN|SIGMA|SCALE|STD|THETA|THRESHOLD|DELTA|SHAPE1|GAMMA|SHAPE2|MEAN|SIGMA|SCALE|STD|THETA|THRESHOLD|C|SHAPE|MEAN|SIGMA|SCALE|STD|THETA|THRESHOLD|C|SHAPE|MEAN|SIGMA|SCALE|STD|THETA|THRESHOLD|AD|ADPVAL|CVM|CVMPVAL|KSD|KSDPVAL|CFILL|CFILLH|CFRAME|CHEADER|CSHADOW|CTEXT|FONT|FORMAT|GUTTER|HEADER|HEIGHT|NCOLS|NOFRAME|POSITION|REFPOINT)\\b)",
+                        "name": "keyword.language.procunivariate.inset.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(PPPLOT|PROBPLOT|QQPLOT)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procunivariate.inset.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(BETA|EXPONENTIAL|GAMMA|GUMBEL|PARETO|IGAUSS|LOGNORMAL|NORMAL|POWER|RAYLEIGH|WEIBULL|COLOR|L|NOLINE|W|ALPHA|BETA|SIGMA|THETA|SIGMA|THETA|ALPHA|ALPHADELTA|ALPHAINITIAL|MAXITER|SIGMA|THETA|MU|SIGMA|LAMBDA|MU|SIGMA|THETA|ZETA|MU|SIGMA|ALPHA|SIGMA|THETA|ALPHA|SIGMA|THETA|SIGMA|THETA|C|ITPRINT|MAXITER|SIGMA|THETA|HREF|HREFLABELS|HREFLABPOS|NOHLABEL|NOVLABEL|NOVTICK|SQUARE|VAXISLABEL|VREF|VREFLABELS|VREFLABPOS|ANNOTATE|CAXIS|CFRAME|CHREF|CTEXT|CVREF|DESCRIPTION|FONT|HAXIS|HEIGHT|HMINOR|INFONT|INHEIGHT|LHREF|LVREF|NAME|NOFRAME|TURNVLABELS|VAXIS|VMINOR|WAXIS|ODSFOOTNOTE|ODSFOOTNOTE2|ODSTITLE|ODSTITLE2|OVERLAY|ANNOKEY|CFRAMESIDE|CFRAMETOP|CPROP|CTEXTSIDE|CTEXTTOP|INTERTILE|NCOLS|NROWS|CONTENTS)\\b)",
+                        "name": "keyword.language.procunivariate.inset.sas"
+                    }
+                ]
+            },            
+            {
+                "match":"(?i:\\b(WHERE|format|pageby|sumby|TITLE\\d*|FOOTNOTE\\d*|ALL|FREQ|VAR|WEIGHT|ID|ALPHA|ANNOTATE|ANNO|CIBASIC|TYPE|ALPHA|CIPCTLDF|CIQUANTDF|TYPE|ALPHA|CIPCTLNORMAL|CIQUANTNORMAL|TYPE|ALPHA|DATA|EXCLNPWGT|EXCLNPWGTS|FREQ|GOUT|IDOUT|LOCCOUNT|MODES|MODE|MU0|LOCATION|NEXTROBS|NEXTRVAL|NOBYPLOT|NOPRINT|NORMAL|NORMALTEST|NOTABCONTENTS|NOVARCONTENTS|OUTTABLE|PCTLDEF|DEF|PLOTS|PLOT|ODSFOOTNOTE|ODSTITLE|NONE|DEFAULT|LABELFMT|ODSTITLE2|PLOTSIZE|ROBUSTSCALE|ROUND|SUMMARYCONTENTS|TRIMMED|TRIM|TYPE|ALPHA|VARDEF|DF|N|WDF|WEIGHT|WGT|WINSORIZED|WINSOR|TYPE|ALPHA)\\b)",
+                "name": "keyword.language.procunivariate.sas"
+            }
+        ]
+    },
+    "proccorr":{
+        "begin": "(?i:\\b(corr)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(DATA|OUT|OUTH|OUTK|OUTP|OUTPLC|OUTPLS|OUTS)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.proccorr.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "begin": "(?i:\\b(BY)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proccorr.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(NOTSORTED|DESCENDING)\\b)",
+                        "name": "keyword.language.proccorr.sas"
+                    }
+                ]
+            },
+            {
+                "match":"(?i:\\b(WHERE|format|pageby|sumby|TITLE\\d*|FOOTNOTE\\d*|FREQ|ID|PARTIAL|VAR|WEIGHT|WITH|ALPHA|BEST|COV|CSSCP|EXCLNPWGT|EXCLNPWGTS|FISHER|BIASADJ|TYPE|RHO0|HOEFFDING|KENDALL|NOCORR|NOMISS|NOPRINT|NOPROB|NOSIMPLE|PEARSON|PLOTS|ALL|MATRIX|NONE|SCATTER|HISTOGRAM|NVAR|NWITH|ELLIPSE|ALPHA|ELLIPSE|NOINSET|NVAR|NWITH|POLYCHORIC|CONVERGE|MAXITER|NGROUPS|POLYSERIAL|CONVERGE|MAXITER|NGROUPS|ORDINAL|RANK|SINGULAR|SPEARMAN|SSCP|VARDEF)\\b)",
+                "name": "keyword.language.proccorr.sas"
             }
         ]
     },
