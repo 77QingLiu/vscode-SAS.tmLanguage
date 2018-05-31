@@ -12,7 +12,7 @@
 #### Inside Macro
 ![](feature3.jpg)
 #### Statistical Procedure
-![](feature4.jpg)
+![](feature4.png)
 
 
 ## Extension Settings
