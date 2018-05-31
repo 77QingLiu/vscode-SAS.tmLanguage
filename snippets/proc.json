@@ -79,5 +79,61 @@
             "RUN;\n"
         ],
         "description": "proc univariate"
-    }
+    },
+    "proc anova":{
+        "prefix": "anova",
+        "body":[
+            "PROC ANOVA data=$1;",
+            "\tclass $2;",
+            "\tmodel $3;",
+            "RUN;\n"
+        ],
+        "description": "proc anova"
+    },
+    "proc cluster":{
+        "prefix": "cluster",
+        "body":[
+            "PROC CLUSTER data=$1 method=${2|AVERAGE,CENTROID,COMPLETE,DENSITY,EML,FLEXIBLE,MCQUITTY,MEDIAN,SINGLE,TWOSTAGE,WARD|};",
+            "\tvar $3;",
+            "\tid $4;",
+            "RUN;\n"
+        ],
+        "description": "proc cluster"
+    },
+    "proc factor":{
+        "prefix": "factor",
+        "body":[
+            "PROC FACTOR data=$1 simple corr;",
+            "RUN;\n"
+        ],
+        "description": "proc factor"
+    },
+    "proc surveyselect":{
+        "prefix": "surveyselect",
+        "body":[
+            "PROC SURVEYSELECT data=$1 out=$2 method=${3|BERNOULLI,POISSON,PPS,BREWER,MURTHY,SAMPFORD,CHROMY,CHROMY,SRS,URS|};",
+            "\tstrata $4;",
+            "RUN;\n"
+        ],
+        "description": "proc surveyselect"
+    }, 
+    "proc reg":{
+        "prefix": "reg",
+        "body":[
+            "PROC REG data=$1;",
+            "\tmodel $2;",
+            "RUN;\n"
+        ],
+        "description": "proc reg"
+    },
+    "proc logistic":{
+        "prefix": "logistic",
+        "body":[
+            "PROC LOGISTIC data=$1;",
+            "\tclass $2;",
+            "\tmodel $3;",
+            "RUN;\n"
+        ],
+        "description": "proc logistic"
+    },
 }

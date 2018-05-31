@@ -5,13 +5,14 @@
 
 
 ## Features
-* Data Step
+#### Data Step
 ![](feature1.jpg)
-* Proc SQL
+#### Proc SQL
 ![](feature2.jpg)
-* Inside Macro
+#### Inside Macro
 ![](feature3.jpg)
-
+#### Statistical Procedure
+![](feature4.jpg)
 
 
 ## Extension Settings
@@ -50,14 +51,14 @@ Syntax parse error if there are unmatched `'` or `"` even if being marked by mac
     - [x] FREQ
     - [x] CORR
     - [x] UNIVARIATE
-    - [ ] ANOVA
-    - [ ] CLUSTER
-    - [ ] FACTOR
-    - [ ] REG
-    - [ ] SURVEYSELECT
-    - [ ] LOGISTIC
+    - [x] ANOVA
+    - [x] CLUSTER
+    - [x] FACTOR
+    - [x] REG
+    - [x] SURVEYSELECT
+    - [x] LOGISTIC
     - [ ] LIFETEST
-    - [X] TRANSPOSE
+    - [x] TRANSPOSE
     - [ ] ANOVA 
     - [ ] APPEND 
     - [ ] CPORT

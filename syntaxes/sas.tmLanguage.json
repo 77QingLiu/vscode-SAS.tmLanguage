@@ -271,7 +271,7 @@
                 "name": "entity.name.arithmetic.sas"
                 },
                 {
-                "match": "\\s+(?i:(eq|ne|gt|lt|ge|le|in|not|&|and|or|min|max))\\s+",
+                "match": "\\s+(?i:(eq|ne|gt|lt|ge|le|in|not|&|\\||and|or|min|max))\\s+",
                 "name": "keyword.operator.logical.sas"
                 },
                 {
@@ -516,6 +516,24 @@
     "procsteplist":{
         "patterns":[
             {
+                "include": "#proclogistic"
+            },
+            {
+                "include": "#procreg"
+            },
+            {
+                "include": "#procsurveyselect"
+            },
+            {
+                "include": "#procfactor"
+            },
+            {
+                "include": "#proccluster"
+            },
+            {
+                "include": "#procanova"
+            },
+            {
                 "include": "#procunivariate"
             },
             {
@@ -576,6 +594,778 @@
             {
                 "match": "(?i:\\b(ACCESS|ACECLUS|ADAPTIVEREG|ALLELE|ANOM|ANOVA|APPEND|ARIMA|AUTHLIB|AUTOREG|BOM|BOXPLOT|BTL|CALENDAR|CALIS|CALLRFC|CANCORR|CANDISC|CAPABILITY|CASECONTROL|CATALOG|CATMOD|CHART|CIMPORT|CLP|CLUSTER|COMPARE|COMPUTAB|CONTENTS|CONVERT|COPY|CORR|CORRESP|COUNTREG|CPM|CPORT|CUSUM|DATASETS|DATASOURCE|DBF|DBLOAD|DEFINE_EVENT|DEFINE_TAGSET|DELETE|DIF|DISCRIM|DISPLAY|DISTANCE|DOCUMENT|DQMATCH|DQSCHEME|DQSRVADM|DQSRVSVC|DS2|DSTRANS|DTREE|ENTROPY|ESM|EXPAND|EXPLODE|EXPORT|FACTEX|FACTOR|FAMILY|FASTCLUS|FCMP|FEDSQL|FMM|FONTREG|FORECAST|FORMAT|FORMS|FREQ|FSBROWSE|FSEDIT|FSLETTER|FSLIST|FSVIEW|G3D|G3GRID|GA|GAM|GANNO|GANTT|GAREABAR|GBARLINE|GCHART|GCONTOUR|GDEVICE|GENESELECT|GENMOD|GEOCODE|GFONT|GIMPORT|GINSIDE|GKEYMAP|GKPI|GLIMMIX|GLM|GLMMOD|GLMPOWER|GLMSELECT|GMAP|GOPTIONS|GPLOT|GPROJECT|GRADAR|GREDUCE|GREMOVE|GREPLAY|GROOVY|GSLIDE|GTESTIT|GTILE|HADOOP|HAPLOTYPE|HP4SCORE|HPBIN|HPCLUS|HPCORR|HPCOUNTREG|HPDECIDE|HPDMDB|HPDS2|HPF|HPFARIMASPEC|HPFDIAGNOSE|HPFENGINE|HPFESMSPEC|HPFEVENTS|HPFEXMSPEC|HPFIDMSPEC|HPFOREST|HPFSELECT|HPFUCMSPEC|HPGENSELECT|HPIMPUTE|HPLMIXED|HPLOGISTIC|HPLSO|HPMIXED|HPNEURAL|HPNLIN|HPNLMOD|HPQLIM|HPREDUCE|HPREG|HPSAMPLE|HPSEVERITY|HPSPLIT|HPSUMMARY|HPTMINE|HPTMSCORE|HTSNP|HTTP|IML|IMPORT|IMSTAT|INBREED|INFOMAPS|INTPOINT|ISHIKAWA|JSON|KDE|KRIGE2D|LATTICE|LIFEREG|LIFETEST|LOAN|LOESS|LOGISTIC|LP|MACONTROL|MACRO|MAPIMPORT|MCMC|MDC|MDS|MEANS|METADATA|MI|MIANALYZE|MIGRATE|MIXED|MODECLUS|MODEL|MULTTEST|NESTED|NETDRAW|NETFLOW|NLIN|NLMIXED|NLP|NPAR1WAY|ODS|OLAP|OPERATE|OPTEX|OPTGRAPH|OPTIONS|OPTLOAD|OPTLP|OPTMILP|OPTMODEL|OPTQP|OPTSAVE|ORTHOREG|PANEL|PARETO|PDLREG|PHREG|PLAN|PLM|PLOT|PLS|PM|PMENU|POWER|PRESENV|PRINCOMP|PRINQUAL|PRINT|PRINTTO|PROBIT|PROTO|PRTDEF|PRTEXP|PSMOOTH|PWENCODE|QDEVICE|QLIM|QUANTLIFE|QUANTREG|QUANTSELECT|RANK|REG|REGISTRY|RELIABILITY|REPORT|ROBUSTREG|RSREG|SCAPROC|SCORE|SEQDESIGN|SEQTEST|SERVER|SEVERITY|SGDESIGN|SGPANEL|SGPLOT|SGRENDER|SGSCATTER|SHEWHART|SIM2D|SIMILARITY|SIMLIN|SIMNORMAL|SOAP|SORT|SPECTRA|SQL|STANDARD|STATESPACE|STATGRAPH|STDIZE|STDRATE|STEPDISC|STP|STREAM|SUMMARY|SURVEYFREQ|SURVEYLOGISTIC|SURVEYMEANS|SURVEYPHREG|SURVEYREG|SURVEYSELECT|SYSLIN|TABULATE|TCALIS|TEMPLATE|TIMEID|TIMEPLOT|TIMESERIES|TPSPLINE|TRANS|TRANSPOSE|TRANSREG|TRANTAB|TREE|TSCSREG|TTEST|UCM|UNIVARIATE|VARCLUS|VARCOMP|VARIOGRAM|VARMAX|X11|X12|XSL)\\b)",
                 "name": "storage.type.function.sas"
+            }
+        ]
+    },
+    "proclogistic":{
+        "begin": "(?i:\\b(logistic)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(DATA|OUTDESIGN|OUTDESIGNONLY|OUTTEST|OUTMODEL|INMODEL|INEST)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.proclogistic.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "begin": "(?i:\\b(BY)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(NOTSORTED|DESCENDING)\\b)",
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(CLASS)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(CPREFIX|DESCENDING|DESC|LPREFIX|MISSING|ORDER|PARAM|TRUNCATE|REF)\\b)",
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(CODE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(CATALOG|DUMMIES|ERROR|FILE|FORMAT|GROUP|IMPUTE|LINESIZE|LOOKUP|RESIDUAL)\\b)",
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(CONTRAST)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(ALPHA|E|ESTIMATE|SINGULAR)\\b)",
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(EFFECT)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(DETAILS|DESIGNROLE|DETAILS|NLAG|PERIOD|WITHIN|NOEFFECT|WEIGHT|DEGREE|MDEGREE|STANDARDIZE|BASIS|DEGREE|KNOTMETHOD)\\b)",
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(EFFECTPLOT)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(BOX|CONTOUR|FIT|INTERACTION|MOSAIC|SLICEFIT)\\b)",
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(ESTIMATE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(DIVISOR|NOFILL|SINGULAR|ADJUST|ALPHA|LOWER|STEPDOWN|TESTVALUE|UPPER|CL|CORR|COV|E|JOINT|SEED|CATEGORY|EXP|ILINK)\\b)",
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(EXACT)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(ALPHA|CLTYPE|ESTIMATE|JOINT|JOINTONLY|MIDPFACTOR|ONESIDED|OUTDIST)\\b)",
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(EXACTOPTIONS)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(ABSFCONV|ADDTOBS|BUILDSUBSETS|EPSILON|FCONV|MAXTIME|METHOD|DIRECT|NETWORK|NETWORKMC|N|NOLOGSCALE|ONDISK|SEED|STATUSN|STATUSTIME|XCONV)\\b)",
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(LSMEANS)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(AT|BYLEVEL|DIFF|OM|SINGULAR|ADJUST|ALPHA|STEPDOWN|CL|CORR|COV|E|LINES|MEANS|PLOTS|SEED|EXP|ILINK|ODDSRATIO)\\b)",
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(LSMESTIMATE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(AT|BYLEVEL|DIVISOR|OM|SINGULAR|ADJUST|ALPHA|LOWER|STEPDOWN|TESTVALUE|UPPER|CL|CORR|COV|E|ELSM|JOINT|SEED|CATEGORY|EXP|ILINK)\\b)",
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(MODEL)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(OUTROC|OUTSTB|OUTVIF)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                        "captures": {
+                            "1":{
+                                "name": "keyword.language.proclogistic.model.sas"
+                            },
+                            "2":{
+                                "name": "entity.name.library.model.sas"
+                            },
+                            "4":{
+                                "name": "variable.variable.dataset.language.sas"
+                            }
+                        }
+                    },
+                    {
+                        "match": "(?i:\\b(DESCENDING|ORDER|EVENT|REFERENCE|REF|EQUALSLOPES|LINK|NOFIT|NOINT|OFFSET|SELECTION|UNEQUALSLOPES|BEST|DETAILS|FAST|HIERARCHY|INCLUDE|MAXSTEP|SEQUENTIAL|SLENTRY|SLSTAY|START|STOP|STOPRES|ABSFCONV|FCONV|FIRTH|GCONV|MAXFUNCTION|MAXITER|NOCHECK|RIDGING|SINGULAR|TECHNIQUE|XCONV|ALPHA|CLODDS|CLPARM|PLCONV|CTABLE|PEVENT|PPROB|AGGREGATE|LACKFIT|SCALE|OUTROC|ROCEPS|INFLUENCE|IPLOTS|CORRB|COVB|EXPB|ITPRINT|NODUMMYPRINT|NOODDSRATIO|PARMLABEL|PCORR|RSQUARE|STB|BINWIDTH|NOLOGSCALE)\\b)",
+                        "name": "keyword.language.proclogistic.model.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(ODDSRATIO)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(AT|CL|DIFF|PLCONV|PLMAXITER|PLSINGULAR)\\b)",
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(output)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(out)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                        "captures": {
+                            "1":{
+                                "name": "keyword.language.proclogistic.output.sas"
+                            },
+                            "2":{
+                                "name": "entity.name.library.output.sas"
+                            },
+                            "4":{
+                                "name": "variable.variable.dataset.language.sas"
+                            }
+                        }
+                    },
+                    {
+                        "match": "(?i:\\b(predprob|ALPHA|OUT|LOWER|PREDICTED|PREDPROBS|STDXBETA|UPPER|XBETA|C|CBAR|DFBETAS|DIFCHISQ|DIFDEV|H|RESCHI|RESDEV|RESLIK|STDRESCHI|STDRESDEV)\\b)",
+                        "name": "keyword.language.proclogistic.output.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(ROC)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(NOOFFSET|LINK)\\b)",
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(ROCCONTRAST)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(REFERENCE|ADJACENTPAIRS|ESTIMATE|COV|E)\\b)",
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(SCORE|STORE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(DATA|OUT|OUTROC|PRIOR)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                        "captures": {
+                            "1":{
+                                "name": "keyword.language.proclogistic.output.sas"
+                            },
+                            "2":{
+                                "name": "entity.name.library.output.sas"
+                            },
+                            "4":{
+                                "name": "variable.variable.dataset.language.sas"
+                            }
+                        }
+                    },
+                    {
+                        "match": "(?i:\\b(ALPHA|CUMULATIVE|CLM|FITSTAT|PRIOREVENT|ROCEPS)\\b)",
+                        "name": "keyword.language.proclogistic.output.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(STRATA)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(CHECKDEPENDENCY|MISSING|NOSUMMARY|INFO)\\b)",
+                        "name": "keyword.language.proclogistic.sas"
+                    }
+                ]
+            },
+            {
+                "match":"(?i:\\b(WHERE|format|pageby|sumby|TITLE\\d*|FOOTNOTE\\d*|FREQ|ID|WEIGHT|NORM|NORMALIZE|UNITS|DEFAULT|STROE|SLICE|NLOPTIONS|COVOUT|DATA|INEST|INMODEL|NOCOV|OUTDESIGN|OUTDESIGNONLY|OUTEST|OUTMODEL|DESCENDING|NAMELEN|ORDER|TRUNCATE|ALPHA|NOPRINT|PLOTS|SIMPLE|MULTIPASS|EXACTONLY|EXACTOPTIONS|ROCOPTIONS)\\b)",
+                "name": "keyword.language.proclogistic.sas"
+            }
+        ]
+    },
+    "procreg":{
+        "begin": "(?i:\\b(reg)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(DATA|OUTSSCP|OUTEST)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.procreg.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "begin": "(?i:\\b(BY)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procreg.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(NOTSORTED|DESCENDING)\\b)",
+                        "name": "keyword.language.procreg.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(CODE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procreg.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(CATALOG|DUMMIES|ERROR|FILE|FORMAT|GROUP|IMPUTE|LINESIZE|LOOKUP|RESIDUAL)\\b)",
+                        "name": "keyword.language.procreg.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(MODEL)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procreg.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(OUTSEB|OUTSTB|OUTVIF)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                        "captures": {
+                            "1":{
+                                "name": "keyword.language.procreg.model.sas"
+                            },
+                            "2":{
+                                "name": "entity.name.library.model.sas"
+                            },
+                            "4":{
+                                "name": "variable.variable.dataset.language.sas"
+                            }
+                        }
+                    },
+                    {
+                        "match": "(?i:\\b(SELECTION|BEST|DETAILS|DETAILS|GROUPNAMES|INCLUDE|MAXSTEP|NOINT|PCOMIT|RIDGE|SLE|SLS|START|STOP|ADJRSQ|AIC|B|BIC|CP|GMSEP|JP|MSE|PC|RMSE|SBC|SP|SSE|EDF|OUTSEB|OUTSTB|OUTVIF|PRESS|RSQUARE|I|XPX|ACOV|ACOVMETHOD|COLLIN|COLLINOINT|CORRB|COVB|HCC|HCCMETHOD|LACKFIT|PARTIALR2|PCORR1|PCORR2|SCORR1|SCORR2|SEQB|SPEC|SRT|SS1|SS2|STB|TOL|WHITE|VIF|CLB|CLI|CLM|DW|DWPROB|INFLUENCE|P|PARTIAL|PARTIALDATA|R|ALL|ACOV|CLB|CLI|CLM|CORRB|COVB|HCC|I|P|PCORR1|PCORR2|R|SCORR1|SCORR2|SEQB|SPEC|SS1|SS2|STB|TOL|VIF|XPX|ALPHA|NOPRINT|SIGMA|SINGULAR)\\b)",
+                        "name": "keyword.language.procreg.model.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(output)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procreg.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(out)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                        "captures": {
+                            "1":{
+                                "name": "keyword.language.procreg.output.sas"
+                            },
+                            "2":{
+                                "name": "entity.name.library.output.sas"
+                            },
+                            "4":{
+                                "name": "variable.variable.dataset.language.sas"
+                            }
+                        }
+                    },
+                    {
+                        "match": "(?i:\\b(COOKD|COVRATIO|DFFITS|H|LCL|LCLM|PREDICTED|PRESS|RESIDUAL|RSTUDENT|STDI|STDP|STDR|STUDENT|UCL|UCLM)\\b)",
+                        "name": "keyword.language.procreg.output.sas"
+                    }
+                ]
+            },
+            {
+                "match":"(?i:\\b(WHERE|format|pageby|sumby|TITLE\\d*|FOOTNOTE\\d*|COVOUT|EDF|OUTSEB|OUTSTB|OUTVIF|PCOMIT|PRESS|RIDGE|RSQUARE|TABLEOUT|PLOTS|CORR|SIMPLE|USSCP|ALL|NOPRINT|ALPHA|SINGULAR|FREQ|ID|VAR|WEIGHT|ADD|DELETE|PAINT|PLOT|PRINT|ANOVA|MODELDATA|REFIT|RESTRICT|REWEIGHT|STOR|TEST)\\b)",
+                "name": "keyword.language.procreg.sas"
+            }
+        ]
+    },
+    "procsurveyselect":{
+        "begin": "(?i:\\b(SURVEYSELECT)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(DATA|OUT|OUTSORT)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.procsurveyselect.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "begin": "(?i:\\b(BY)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsurveyselect.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(NOTSORTED|DESCENDING)\\b)",
+                        "name": "keyword.language.procsurveyselect.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(STRATA)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsurveyselect.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(ALLOC|ALLOCMIN|ALPHA|COST|MARGIN|NOSAMPLE|STATS|VAR)\\b)",
+                        "name": "keyword.language.procsurveyselect.sas"
+                    }
+                ]
+            },
+            {
+                "match":"(?i:\\b(WHERE|format|pageby|sumby|TITLE\\d*|FOOTNOTE\\d*|FREQ|ID|SIZE|STRATA|CONTROL|PPS|PRESORTED|METHOD|SAMPSIZE|SELECTALL|SAMPRATE|NMIN|NMAX|REPS|MINSIZE|MAXSIZE|CERTSIZE|CERTSIZE|P|SORT|SEED|RANUNI|GROUPS|NOPRINT|CERTUNITS|JTPROBS|OUTALL|OUTHITS|OUTSEED|OUTSIZE|STATS)\\b)",
+                "name": "keyword.language.procsurveyselect.sas"
+            }
+        ]
+    },
+    "procfactor":{
+        "begin": "(?i:\\b(factor)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(DATA|OUT|TARGET|OUTSTAT)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.procfactor.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "begin": "(?i:\\b(BY)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procfactor.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(NOTSORTED|DESCENDING)\\b)",
+                        "name": "keyword.language.procfactor.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(PATHDIAGRAM)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procfactor.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(ALPHA|ARRANGE|COVER|FACTORSIZE|FUZZ|DECP|NOESTIM|NOERRVAR|NOFACTORVAR|NOVARIANCE|DIAGRAMLABEL|LABEL|NODELABEL|NOTITLE|TITLE)\\b)",
+                        "name": "keyword.language.procfactor.sas"
+                    }
+                ]
+            },
+            {
+                "match":"(?i:\\b(WHERE|format|pageby|sumby|TITLE\\d*|FOOTNOTE\\d*|FREQ|ID|PARTIAL|WEIGHT|PRIORS|PATHDIAGRAM|HEYWOOD|METHOD|PRIORS|RANDOM|ULTRAHEYWOOD|MINEIGEN|NFACTORS|PROPORTION|ALPHA|COVARIANCE|COVER|NOINT|SE|VARDEF|WEIGHT|GAMMA|HKPOWER|NORM|NOPROMAXNORM|POWER|PREROTATE|RCONVERGE|RITER|ROTATE|TAU|ODS Graphics|PLOTS|ALL|CORR|EIGENVECTORS|FLAG|FUZZ|MSA|NOPRINT|NPLOT|PLOT|PLOTREF|PREPLOT|PRINT|REORDER|RESIDUALS|ROUND|SCORE|SCREE|SIMPLE|CONVERGE|MAXITER|SINGULAR|NOCORR|NOBS|PARPREFIX|PREFIX)\\b)",
+                "name": "keyword.language.procfactor.sas"
+            }
+        ]
+    },
+    "proccluster":{
+        "begin": "(?i:\\b(cluster)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(DATA|OUTTREE)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.proccluster.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "begin": "(?i:\\b(BY)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proccluster.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(NOTSORTED|DESCENDING)\\b)",
+                        "name": "keyword.language.proccluster.sas"
+                    }
+                ]
+            },
+            {
+                "match":"(?i:\\b(WHERE|format|pageby|sumby|TITLE\\d*|FOOTNOTE\\d*|FREQ|ID|RMSSTD|VAR|COPY|BETA|HYBRID|METHOD|MODE|PENALTY|NOEIGEN|NONORM|NOSQUARE|STANDARD|TRIM|K|R|NOTIE|CCC|NOID|PRINT|PSEUDO|RMSSTD|RSQUARE|NOPRINT|PLOTS|SIMPLE)\\b)",
+                "name": "keyword.language.proccluster.sas"
+            }
+        ]
+    },
+    "procanova":{
+        "begin": "(?i:\\b(anova)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(DATA|OUTSTAT)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.procanova.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "begin": "(?i:\\b(BY)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procanova.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(NOTSORTED|DESCENDING)\\b)",
+                        "name": "keyword.language.procanova.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(CLASS)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procanova.class.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(REF|TRUNCATE)\\b)",
+                        "name": "keyword.language.procanova.class.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(MODEL)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procanova.model.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(INTERCEPT|INT|NOUNI)\\b)",
+                        "name": "keyword.language.procanova.model.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(MANOVA)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procanova.manova.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(H|E|M|MNAMES|PREFIX|CANONICAL|MSTAT|ORTH|PRINTE|PRINTH|SUMMARY)\\b)",
+                        "name": "keyword.language.procanova.manova.sas"
+                    }
+                ]
+            },  
+            {
+                "begin": "(?i:\\b(MEANS)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procanova.means.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(BON|DUNCAN|DUNNETT|DUNNETTL|DUNNETTU|GABRIEL|REGWQ|SCHEFFE|SIDAK|SMM|SNK|T|TUKEY| WALLER|ALPHA|CLDIFF|CLM|E|KRATIO|LINES|NOSORT|HOVTEST|WELCH)\\b)",
+                        "name": "keyword.language.procanova.means.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(REPEATED)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procanova.repeated.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(CANONICAL|MSTAT|NOM|NOU|PRINTE|PRINTH|PRINTM|PRINTRV|SUMMARY|UEPSDEF)\\b)",
+                        "name": "keyword.language.procanova.repeated.sas"
+                    }
+                ]
+            },  
+            {
+                "begin": "(?i:\\b(TEST)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procanova.test.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(H|E)\\b)",
+                        "name": "keyword.language.procanova.test.sas"
+                    }
+                ]
+            },                                  
+            {
+                "match":"(?i:\\b(WHERE|format|pageby|sumby|TITLE\\d*|FOOTNOTE\\d*|ABSORB|FREQ|DATA|MANOVA|MULTIPASS|NAMELEN|NOPRINT|ORDER|OUTSTAT|PLOTS)\\b)",
+                "name": "keyword.language.procanova.sas"
             }
         ]
     },
@@ -1453,7 +2243,7 @@
         ]
     },
     "procmeans":{
-        "begin": "(?i:\\b(means)\\b)",
+        "begin": "(?i:\\b(means|summary)\\b)",
         "end": "(?i:\\b((?=run))\\b)",
         "beginCaptures": {
             "0":{
