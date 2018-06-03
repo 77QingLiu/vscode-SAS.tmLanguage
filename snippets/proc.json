@@ -136,4 +136,82 @@
         ],
         "description": "proc logistic"
     },
+    "proc transpose":{
+        "prefix": "transpose",
+        "body":[
+            "PROC TRANSPOSE data=$1 out=$2;",
+            "\tby $3;",
+            "\tvar $4;",
+            "RUN;\n"
+        ],
+        "description": "proc transpose"
+    },
+    "proc lifetest":{
+        "prefix": "lifetest",
+        "body":[
+            "PROC LIFETEST data=$1 outtest=$2;",
+            "\ttime $3;",
+            "\tstrata $4;",
+            "RUN;\n"
+        ],
+        "description": "proc lifetest"
+    },
+    "proc fastclus":{
+        "prefix": "fastclus",
+        "body":[
+            "PROC FASTCLUS data=$1 out=$2 maxc=$3 maxiter=$4;",
+            "\tvar $5;",
+            "RUN;\n"
+        ],
+        "description": "proc fastclus"
+    },
+    "proc glm":{
+        "prefix": "glm",
+        "body":[
+            "PROC GLM data=$1;",
+            "\tclass $2;",
+            "\tmodel $3;",
+            "RUN;\n"
+        ],
+        "description": "proc glm"
+    },
+    "proc mixed":{
+        "prefix": "mixed",
+        "body":[
+            "PROC MIXED data=$1;",
+            "\tclass $2;",
+            "\tmodel $3;",
+            "\trandom $4;",
+            "RUN;\n"
+        ],
+        "description": "proc mixed"
+    },
+    "proc npar1way":{
+        "prefix": "npar1way",
+        "body":[
+            "PROC NPAR1WAY data=$1;",
+            "\tclass $2;",
+            "\tvar $3;",
+            "RUN;\n"
+        ],
+        "description": "proc npar1way"
+    },
+    "proc ttest":{
+        "prefix": "ttest",
+        "body":[
+            "PROC TTEST data=$1;",
+            "\tclass $2;",
+            "\tvar $3;",
+            "RUN;\n"
+        ],
+        "description": "proc ttest"
+    },
+    "proc sgrender":{
+        "prefix": "sgrender",
+        "body":[
+            "PROC SGRENDER data=$1 template=$2;",
+            "RUN;\n"
+        ],
+        "description": "proc sgrender"
+    }
 }

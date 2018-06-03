@@ -44,7 +44,7 @@ Syntax parse error if there are unmatched `'` or `"` even if being marked by mac
     - [x] DATASETS
     - [x] EXPORT
     - [x] IMPORT
-    - [ ] SGPLOT
+    - [x] SGPLOT
     - [ ] TEMPLATE
     - [x] PRINT
     - [x] RANK
@@ -57,13 +57,12 @@ Syntax parse error if there are unmatched `'` or `"` even if being marked by mac
     - [x] REG
     - [x] SURVEYSELECT
     - [x] LOGISTIC
-    - [ ] LIFETEST
+    - [x] LIFETEST
     - [x] TRANSPOSE
-    - [ ] ANOVA 
-    - [ ] APPEND 
-    - [ ] CPORT
-    - [ ] FASTCLUS
-    - [ ] GLM
-    - [ ] MIXED
-    - [ ] NPAR1WAY
-    - [ ] TTEST
+    - [x] APPEND 
+    - [x] CPORT
+    - [x] FASTCLUS
+    - [x] GLM
+    - [x] MIXED
+    - [x] NPAR1WAY
+    - [x] TTEST

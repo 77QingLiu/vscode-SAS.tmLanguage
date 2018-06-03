@@ -451,6 +451,14 @@
             }
         ]
     },
+    "styleAttribute":{
+        "patterns": [
+            {
+                "match": "(?i:\\b(COLOR|PATTERN|THICKNESS|TRANSPARENCY|SYMBOL|SIZE|WEIGHT|FAMILY)\\b)",
+                "name": "keyword.language.style.sas"
+            }
+        ]
+    },
     "sql":{
         "begin": "(?i:\\b((proc) +(sql))\\b)",
         "end": "(?i:\\b(quit *;))",
@@ -515,6 +523,36 @@
     },
     "procsteplist":{
         "patterns":[
+            {
+                "include": "#procsgrender"
+            },
+            {
+                "include": "#procsgplot"
+            },
+            {
+                "include": "#procttest"
+            },
+            {
+                "include": "#procnpar1way"
+            },
+            {
+                "include": "#procmixed"
+            },
+            {
+                "include": "#procglm"
+            },
+            {
+                "include": "#procfastclus"
+            },
+            {
+                "include": "#proclifetest"
+            },
+            {
+                "include": "#proccport"
+            },
+            {
+                "include": "#procappend"
+            },
             {
                 "include": "#proclogistic"
             },
@@ -597,6 +635,1695 @@
             }
         ]
     },
+    "procsgrender":{
+        "begin": "(?i:\\b(sgrender)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(DATA|DATTRMAP|SGANNO)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.procsgrender.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "match":"(?i:\\b(WHERE|format|pageby|sumby|TITLE\\d*|FOOTNOTE\\d*|DATTRVAR|DYNAMIC|OBJECT|OBJECTLABEL|SGE|TEMPLATE)\\b)",
+                "name": "keyword.language.procsgrender.sas"
+            }
+        ]
+    },    
+    "procsgplot":{
+        "begin": "(?i:\\b(sgplot)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(DATA)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.procsgplot.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "begin": "(?i:\\b(STYLEATTRS)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(DATACOLORS|DATACONTRASTCOLORS|DATALINEPATTERNS|DATASYMBOLS)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(BAND)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(lower|lower|ATTRID|DISCRETEOFFSET|FILL|NOFILL|FILLATTRS|LINEATTRS|NOEXTEND|OUTLINE|NOOUTLINE|TRANSPARENCY|TYPE|STEP|X|Y|TIP|NONE|TIPFORMAT|TIPLABEL|GROUP|NOMISSINGGROUP|CURVELABELATTRS|CURVELABELLOC|INSIDE|CURVELABELLOWER|CURVELABELPOS|MIN|MAX|START|END|CURVELABELUPPER|LEGENDLABEL|SPLITCHAR|SPLITCHARNODROP|SPLITJUSTIFY|CENTER|RIGHT|MODELNAME|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(BLOCK)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ALTFILLATTRS|ATTRID|FILL|NOFILL|FILLATTRS|FILLTYPE|ALTERNATE|LINEATTRS|OUTLINE|NOOUTLINE|TRANSPARENCY|X|POSITION|CENTER|TOP|BLOCKLABEL|NOVALUES|VALUES|SPLITCHAR|SPLITCHARNODROP|VALUEATTRS|VALUEFITPOLICY|SHRINK|SPLIT|SPLITALWAYS|TRUNCATE|VALUEHALIGN|CENTER|RIGHT|START|VALUEVALIGN|CENTER|BOTTOM|LABEL|NOLABEL|LABELATTRS|LABELPOS|LEFT|RIGHT|TOP|CLASS|EXTENDMISSING|NOMISSINGCLASS|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(BUBBLE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|BRADIUSMAX|BRADIUSMIN|COLORMODEL|COLORRESPONSE|DATASKIN|FILL|NOFILL|FILLATTRS|LINEATTRS|TRANSPARENCY|X|Y|OUTLINE|NOOUTLINE|TIP|TIPFORMAT|TIPLABEL|GROUP|NOMISSINGGROUP|DATALABEL|DATALABELATTRS|DATALABELPOS|LEGENDLABEL|SPLITCHAR|SPLITCHARNODROP|SPLITJUSTIFY|URL|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(DENSITY)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|LINEATTRS|TRANSPARENCY|TYPE|SCALE|X|GROUP|CURVELABEL|CURVELABELATTRS|CURVELABELLOC|CURVELABELPOS|LEGENDLABEL|SPLITCHAR|SPLITCHARNODROP|SPLITJUSTIFY|FREQ|WEIGHT|Y|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(DOT)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|DATASKIN|DISCRETEOFFSET|TRANSPARENCY|TIP|TIPFORMAT|TIPLABEL|CLUSTERWIDTH|GROUP|GROUPDISPLAY|GROUPORDER|NOERRORCAPS|DATALABEL|DATALABELATTRS|DATALABELPOS|LEGENDLABEL|SPLITCHAR|SPLITCHARNODROP|SPLITJUSTIFY|STATLABEL|LIMITATTRS|LIMITS|LIMITSTAT|NUMSTD|FILLEDOUTLINEDMARKERS|MARKERATTRS|MARKERFILLATTRS|MARKEROUTLINEATTRS|ALPHA|CATEGORYORDER|FREQ|MISSING|RESPONSE|STAT|URL|WEIGHT|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(DROPLINE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(DATASKIN|DISCRETEOFFSET|LINEATTRS|NOCLIP|TRANSPARENCY|DROPTO|X|Y|LABEL|LABELATTRS|LEGENDLABEL|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            },  
+            {
+                "begin": "(?i:\\b(ELLIPSE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(FILL|FILLATTRS|LEGENDLABEL|LINEATTRS|OUTLINE|TRANSPARENCY|X|Y|ALPHA|CLIP|FREQ|TYPE|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            },   
+            {
+                "begin": "(?i:\\b(FRINGE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|LINEATTRS|TRANSPARENCY|X|TIP|TIPFORMAT|TIPLABEL|GROUP|HEIGHT|NOMISSINGGROUP|LEGENDLABEL|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            },  
+            {
+                "begin": "(?i:\\b(GRADLEGEND)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(BORDER|NOBORDER|NOTITLE|OUTERPAD|POSITION|TITLE|TITLEATTRS|EXTRACTSCALE)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            },  
+            {
+                "begin": "(?i:\\b(HBAR)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|BARWIDTH|BASELINEATTRS|DATASKIN|DISCRETEOFFSET|FILL|NOFILL|FILLATTRS|FILLTYPE|OUTLINE|NOOUTLINE|OUTLINEATTRS|TRANSPARENCY|BASELINE|X|Y|TIP|TIPFORMAT|TIPLABEL|CLUSTERWIDTH|GROUP|GROUPDISPLAY|GROUPORDER|DATALABEL|DATALABELATTRS|DATALABELFITPOLICY|DATALABELPOS|LEGENDLABEL|SEGLABEL|SEGLABELATTRS|SEGLABELFITPOLICY|SEGLABELFORMAT|STATLABEL|NOSTATLABEL|LIMITATTRS|LIMITS|LIMITSTAT|NUMSTD|ALPHA|CATEGORYORDER|FREQ|MISSING|RESPONSE|STAT|URL|WEIGHT|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            },  
+            {
+                "begin": "(?i:\\b(HBARPARM)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|BARWIDTH|BASELINEATTRS|DATASKIN|DISCRETEOFFSET|FILL|NOFILL|FILLATTRS|FILLTYPE|LEGENDLABEL|OUTLINE|NOOUTLINE|OUTLINEATTRS|TRANSPARENCY|BASELINE|X|Y|TIP|TIPFORMAT|TIPLABEL|CLUSTERWIDTH|GROUP|GROUPDISPLAY|GROUPORDER|DATALABEL|DATALABELATTRS|DATALABELFITPOLICY|DATALABELPOS|SEGLABEL|SEGLABELATTRS|SEGLABELFITPOLICY|SEGLABELFORMAT|LIMITATTRS|LIMITLOWER|LIMITUPPER|MISSING|URL|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(HBOX)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|BOXWIDTH|CAPSHAPE|CONNECT|CONNECTATTRS|DATASKIN|DISCRETEOFFSET|EXTREME|FILL|NOFILL|FILLATTRS|INTBOXWIDTH|LINEATTRS|MEANATTRS|MEDIANATTRS|NOCAPS|NOMEAN|NOMEDIAN|NOOUTLIERS|NOTCHES|OUTLIERATTRS|TRANSPARENCY|WHISKERATTRS|WHISKERPERCENTILE|X|Y|TIP|TIPFORMAT|TIPLABEL|CLUSTERWIDTH|GROUP|GROUPDISPLAY|GROUPORDER|DATALABEL|DATALABELATTRS|LABELFAR|LEGENDLABEL|SPLITCHAR|SPLITCHARNODROP|SPLITJUSTIFY|CATEGORY|FREQ|MISSING|PERCENTILE|SPREAD|WEIGHT|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(HIGHLOW)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|BARWIDTH|CLIPCAP|CLIPCAPSHAPE|DATASKIN|DISCRETEOFFSET|FILL|NOFILL|FILLATTRS|HIGHCAP|INTERVALBARWIDTH|LINEATTRS|LOWLABEL|OUTLINE|NOOUTLINE|TRANSPARENCY|X|Y|TIP|TIPFORMAT|TIPLABEL|CLUSTERWIDTH|GROUP|GROUPDISPLAY|GROUPORDER|NOMISSINGGROUP|HIGHLABEL|LABELATTRS|LEGENDLABEL|CLOSE|LOWCAP|OPEN|TYPE|URL|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(HISTOGRAM)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|DATASKIN|FILL|NOFILL|FILLATTRS|FILLTYPE|OUTLINE|TRANSPARENCY|X|Y|GROUP|DATALABEL|LEGENDLABEL|BINSTART|BINWIDTH|BOUNDARY|FREQ|NBINS|SCALE|SHOWBINS|WEIGHT|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(HLINE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|BREAK|DATASKIN|DISCRETEOFFSET|LINEATTRS|TRANSPARENCY|X|Y|TIP|TIPFORMAT|TIPLABEL|CLUSTERWIDTH|GROUP|GROUPDISPLAY|GROUPORDER|NOERRORCAPS|CURVELABEL|CURVELABELATTRS|CURVELABELLOC|CURVELABELPOS|DATALABEL|DATALABELATTRS|DATALABELPOS|LEGENDLABEL|SPLITCHAR|SPLITCHARNODROP|SPLITJUSTIFY|STATLABEL|LIMITATTRS|LIMITS|LIMITSTAT|NUMSTD|FILLEDOUTLINEDMARKERS|MARKERATTRS|MARKERFILLATTRS|MARKEROUTLINEATTRS|MARKERS|ALPHA|CATEGORYORDER|FREQ|MISSING|RESPONSE|STAT|URL|WEIGHT|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(INSET)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b((NO)?BORDER|LABELALIGN|POSITION|TEXTATTRS|TITLE|TITLEATTRS|VALUEALIGN)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(KEYLEGEND)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ACROSS|AUTOITEMSIZE|BORDER|NOBORDER|DOWN|LINELENGTH|LOCATION|OPAQUE|NOOPAQUE|OPAQUE|OUTERPAD|POSITION|TITLE|TITLEATTRS|VALUEATTRS|SORTORDER|TYPE)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(LINEPARM)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|LINEATTRS|NOEXTEND|TRANSPARENCY|X|Y|GROUP|NOMISSINGGROUP|CURVELABEL|CURVELABELATTRS|CURVELABELLOC|CURVELABELPOS|LEGENDLABEL|SPLITCHAR|SPLITCHARNODROP|SPLITJUSTIFY|CLIP|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(LOESS)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|LINEATTRS|NOMARKERS|SMOOTH|TRANSPARENCY|X|Y|TIP|TIPFORMAT|TIPLABEL|GROUP|CURVELABEL|CURVELABELATTRS|CURVELABELLOC|CURVELABELPOS|DATALABEL|DATALABELATTRS|DATALABELPOS|LEGENDLABEL|SPLITCHAR|SPLITCHARNODROP|SPLITJUSTIFY|NOLEGCLM|NOLEGFIT|CLM|CLMATTRS|CLMTRANSPARENCY|FILLEDOUTLINEDMARKERS|JITTER|MARKERATTRS|MARKERFILLATTRS|MARKEROUTLINEATTRS|ALPHA|DEGREE|INTERPOLATION|MAXPOINTS|REWEIGHT|WEIGHT|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(NEEDLE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|BASELINEATTRS|DATASKIN|DISCRETEOFFSET|LINEATTRS|TRANSPARENCY|BASELINE|X|Y|TIP|TIPFORMAT|TIPLABEL|CLUSTERWIDTH|GROUP|GROUPDISPLAY|GROUPORDER|NOMISSINGGROUP|DATALABEL|DATALABELATTRS|DATALABELPOS|LEGENDLABEL|SPLITCHAR|SPLITCHARNODROP|SPLITJUSTIFY|MARKERATTRS|MARKERS|URL|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(PBSPLINE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|LINEATTRS|NKNOTS|SMOOTH|TRANSPARENCY|X|Y|TIP|TIPFORMAT|TIPLABEL|CURVELABEL|CURVELABELATTRS|CURVELABELLOC|CURVELABELPOS|DATALABEL|DATALABELATTRS|DATALABELPOS|SPLITCHAR|SPLITCHARNODROP|SPLITJUSTIFY|LEGENDLABEL|NOLEGCLI|NOLEGCLM|NOLEGFIT|CLI|CLIATTRS|CLM|CLMATTRS|CLMTRANSPARENCY|FILLEDOUTLINEDMARKERS|JITTER|MARKERATTRS|MARKERFILLATTRS|MARKEROUTLINEATTRS|NOMARKERS|PBSPLINE|MAXPOINTS|ALPHA|DEGREE|FREQ|GROUP|WEIGHT|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(POLYGON)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|BACKLIGHT|COLORMODEL|COLORRESPONSE|DATASKIN|FILL|NOFILL|FILLATTRS|LINEATTRS|OUTLINE|NOOUTLINE|ROTATE|TRANSPARENCY|X|XOFFSET|Y|YOFFSET|TIP|TIPFORMAT|TIPLABEL|GROUP|NOMISSINGGROUP|LABEL|LABELATTRS|LABELLOC|LABELPOS|LEGENDLABEL|ROTATELABEL|SPLITCHAR|SPLITCHARNODROP|SPLITJUSTIFY|URL|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(REFLINE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(DATASKIN|DISCRETEOFFSET|LINEATTRS|NOCLIP|TRANSPARENCY|AXIS|LABEL|LABELATTRS|LABELLOC|LABELPOS|LEGENDLABEL|SPLITCHAR|SPLITCHARNODROP|SPLITJUSTIFY|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(REG)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|LINEATTRS|TRANSPARENCY|X|Y|TIP|TIPFORMAT|TIPLABEL|GROUP|CURVELABEL|CURVELABELATTRS|CURVELABELLOC|CURVELABELPOS|DATALABEL|DATALABELATTRS|DATALABELPOS|SPLITCHAR|SPLITCHARNODROP|SPLITJUSTIFY|LEGENDLABEL|NOLEGCLI|NOLEGCLM|NOLEGFIT|CLI|CLIATTRS|CLM|CLMATTRS|CLMTRANSPARENCY|FILLEDOUTLINEDMARKERS|JITTER|MARKERATTRS|MARKERFILLATTRS|MARKEROUTLINEATTRS|NOMARKERS|ALPHA|DEGREE|FREQ|MAXPOINTS|WEIGHT|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(SCATTER)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|COLORMODEL|COLORRESPONSE|DATASKIN|DISCRETEOFFSET|ERRORBARATTRS|LABELSTRIP|TRANSPARENCY|X|Y|TIP|TIPFORMAT|TIPLABEL|CLUSTERWIDTH|GROUP|GROUPDISPLAY|GROUPORDER|NOERRORCAPS|NOMISSINGGROUP|DATALABEL|DATALABELATTRS|DATALABELPOS|LEGENDLABEL|SPLITCHAR|SPLITCHARNODROP|SPLITJUSTIFY|FILLEDOUTLINEDMARKERS|JITTER|JITTERWIDTH|MARKERATTRS|MARKERCHAR|MARKERCHARATTRS|MARKERFILLATTRS|MARKEROUTLINEATTRS|FREQ|URL|XERRORLOWER|XERRORUPPER|YERRORLOWER|YERRORUPPER|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(SERIES)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|DATASKIN|DISCRETEOFFSET|LINEATTRS|TRANSPARENCY|X|Y|TIP|TIPFORMAT|TIPLABEL|CLUSTERWIDTH|GROUP|GROUPDISPLAY|GROUPLC|GROUPLP|GROUPMC|GROUPMS|GROUPORDER|NOMISSINGGROUP|CURVELABEL|CURVELABELATTRS|CURVELABELLOC|CURVELABELPOS|DATALABEL|DATALABELATTRS|DATALABELPOS|LEGENDLABEL|SPLITCHAR|SPLITCHARNODROP|SPLITJUSTIFY|FILLEDOUTLINEDMARKERS|MARKERATTRS|MARKERFILLATTRS|MARKEROUTLINEATTRS|MARKERS|BREAK|URL|NAME|SMOOTHCONNECT)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(STEP)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|DATASKIN|DISCRETEOFFSET|ERRORBARATTRS|JUSTIFY|LINEATTRS|TRANSPARENCY|X|Y|TIP|TIPFORMAT|TIPLABEL|CLUSTERWIDTH|GROUP|GROUPDISPLAY|GROUPORDER|NOERRORCAPS|NOMISSINGGROUP|CURVELABEL|CURVELABELATTRS|CURVELABELLOC|CURVELABELPOS|DATALABEL|DATALABELATTRS|DATALABELPOS|LEGENDLABEL|SPLITCHAR|SPLITCHARNODROP|SPLITJUSTIFY|FILLEDOUTLINEDMARKERS|MARKERATTRS|MARKERFILLATTRS|MARKEROUTLINEATTRS|MARKERS|URL|YERRORLOWER|YERRORUPPER|NAME|BREAK)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(SYMBOLCHAR|SYMBOLIMAGE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(HOFFSET|ROTATE|SCALE|TEXTATTRS|VOFFSET)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(TEXT)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|BACKFILL|BACKLIGHT|COLORMODEL|COLORRESPONSE|CONTRIBUTEOFFSETS|DISCRETEOFFSET|FILLATTRS|OUTLINE|OUTLINEATTRS|PAD|TRANSPARENCY|CLUSTERAXIS|X|Y|TIP|TIPFORMAT|TIPLABEL|CLUSTERWIDTH|GROUP|GROUPDISPLAY|NOMISSINGGROUP|LEGENDLABEL|URL|NAME|POSITION|ROTATE|SPLITCHAR|SPLITCHARNODROP|SPLITJUSTIFY|SPLITPOLICY|SPLITWIDTH|STRIP|TEXTATTRS|VCENTER)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(VBAR)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|BARWIDTH|BASELINEATTRS|DATASKIN|DISCRETEOFFSET|FILL|NOFILL|FILLATTRS|FILLTYPE|OUTLINE|NOOUTLINE|OUTLINEATTRS|TRANSPARENCY|BASELINE|X|Y|RESPONSE|TIP|TIPFORMAT|TIPLABEL|CLUSTERWIDTH|GROUP|GROUPDISPLAY|GROUPORDER|DATALABEL|DATALABELATTRS|DATALABELFITPOLICY|DATALABELPOS|LEGENDLABEL|SEGLABEL|SEGLABELATTRS|SEGLABELFITPOLICY|SEGLABELFORMAT|SPLITCHAR|SPLITCHARNODROP|STATLABEL|LIMITATTRS|LIMITS|LIMITSTAT|NUMSTD|ALPHA|CATEGORYORDER|FREQ|MISSING|STAT|URL|WEIGHT|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(VBARPARM)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|BARWIDTH|BASELINEATTRS|DATASKIN|DISCRETEOFFSET|FILL|NOFILL|FILLATTRS|FILLTYPE|OUTLINE|NOOUTLINE|OUTLINEATTRS|TRANSPARENCY|BASELINE|X|Y|TIP|TIPFORMAT|TIPLABEL|CLUSTERWIDTH|GROUP|GROUPDISPLAY|GROUPORDER|DATALABEL|DATALABELATTRS|DATALABELFITPOLICY|DATALABELPOS|LEGENDLABEL|SEGLABEL|SEGLABELATTRS|SEGLABELFITPOLICY|SEGLABELFORMAT|SPLITCHAR|SPLITCHARNODROP|LIMITATTRS|LIMITLOWER|LIMITUPPER|MISSING|URL|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(NEEDLE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|BOXWIDTH|CAPSHAPE|CONNECT|CONNECTATTRS|DATASKIN|DISCRETEOFFSET|EXTREME|FILL|NOFILL|FILLATTRS|INTBOXWIDTH|LINEATTRS|MEANATTRS|MEDIANATTRS|NOCAPS|NOMEAN|NOMEDIAN|NOOUTLIERS|NOTCHES|OUTLIERATTRS|TRANSPARENCY|WHISKERATTRS|WHISKERPERCENTILE|X|Y|TIP|TIPFORMAT|TIPLABEL|CLUSTERWIDTH|GROUP|GROUPDISPLAY|GROUPORDER|DATALABEL|DATALABELATTRS|LABELFAR|LEGENDLABEL|SPLITCHAR|SPLITCHARNODROP|SPLITJUSTIFY|CATEGORY|FREQ|MISSING|PERCENTILE|SPREAD|WEIGHT|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(VECTOR)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ARROWDIRECTION|ARROWHEADSHAPE|ATTRID|DATASKIN|LINEATTRS|NOARROWHEADS|TRANSPARENCY|X|Y|TIP|TIPFORMAT|TIPLABEL|GROUP|NOMISSINGGROUP|DATALABEL|DATALABELATTRS|DATALABELPOS|LEGENDLABEL|SPLITCHAR|SPLITCHARNODROP|SPLITJUSTIFY|XORIGIN|YORIGIN|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(VLINE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|BREAK|DATASKIN|DISCRETEOFFSET|LINEATTRS|TRANSPARENCY|X|Y|TIP|TIPFORMAT|TIPLABEL|CLUSTERWIDTH|GROUP|GROUPDISPLAY|GROUPORDER|NOERRORCAPS|CURVELABEL|CURVELABELATTRS|CURVELABELLOC|CURVELABELPOS|DATALABEL|DATALABELATTRS|DATALABELPOS|LEGENDLABEL|SPLITCHAR|SPLITCHARNODROP|SPLITJUSTIFY|STATLABEL|LIMITATTRS|LIMITS|LIMITSTAT|NUMSTD|FILLEDOUTLINEDMARKERS|MARKERATTRS|MARKERFILLATTRS|MARKEROUTLINEATTRS|MARKERS|ALPHA|CATEGORYORDER|FREQ|MISSING|RESPONSE|STAT|URL|WEIGHT|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(WATERFALL)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|BARWIDTH|BASELINEATTRS|COLORGROUP|DATASKIN|FILL|NOFILL|FILLATTRS|OUTLINE|TRANSPARENCY|X|Y|TIP|TIPFORMAT|TIPLABEL|FINALBARATTRS|FINALBARTICKVALUE|INITIALBARATTRS|INITIALBARTICKVALUE|INITIALBARVALUE|DATALABEL|DATALABELATTRS|SPLITCHAR|SPLITCHARNODROP|SPLITJUSTIFY|MISSING|STAT|URL|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(X2?AXIS)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(COLORBANDATTRS|COLORBANDS|DISPLAY|GRID|GRIDATTRS|MINORGRID|MINORGRIDATTRS|DISCRETEORDER|INTEGER|INTERVAL|LOGBASE|LOGSTYLE|LOGVTYPE|MAX|MIN|MINOR|MINORCOUNT|MINORINTERVAL|NOTIMESPLIT|OFFSETMAX|OFFSETMIN|RANGES|REFTICKS|REVERSE|THRESHOLDMAX|THRESHOLDMIN|TYPE|FITPOLICY|LABEL|LABELATTRS|LABELPOS|SPLITCHAR|SPLITCHARNODROP|SPLITJUSTIFY|VALUEATTRS|VALUES|VALUESDISPLAY|VALUESFORMAT|VALUESHINT)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(XAXISTABLE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|COLORGROUP|DROPONMISSING|LOCATION|POSITION|SEPARATOR|TEXTGROUP|TEXTGROUPID|TITLE|TITLEATTRS|VALUEATTRS|X|LABEL|LABELATTRS|LABELPOS|STATLABEL|NOSTATLABEL|CLASSDISPLAY|CLASS|STAT|X|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(Y2?AXIS)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(COLORBANDATTRS|COLORBANDS|DISPLAY|GRID|GRIDATTRS|MINORGRID|MINORGRIDATTRS|DISCRETEORDER|INTEGER|INTERVAL|LOGBASE|LOGSTYLE|LOGVTYPE|MAX|MIN|MINOR|MINORCOUNT|MINORINTERVAL|NOTIMESPLIT|OFFSETMAX|OFFSETMIN|RANGES|REFTICKS|REVERSE|THRESHOLDMAX|THRESHOLDMIN|TYPE|FITPOLICY|LABEL|LABELATTRS|LABELPOS|SPLITCHAR|SPLITCHARNODROP|SPLITJUSTIFY|VALUEATTRS|VALUES|VALUESDISPLAY|VALUESFORMAT|VALUESHINT)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "begin": "(?i:\\b(YAXISTABLE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "include": "#specialparser"
+                    },
+                    {
+                        "include": "#styleAttribute"
+                    },
+                    {
+                        "match": "(?i:\\b(ATTRID|COLORGROUP|DROPONMISSING|LOCATION|POSITION|SEPARATOR|TEXTGROUP|TEXTGROUPID|TITLE|TITLEATTRS|VALUEATTRS|VALUEHALIGN|VALUEJUSTIFY|Y|LABEL|LABELATTRS|LABELHALIGN|LABELJUSTIFY|LABELPOS|STATLABEL|CLASSDISPLAY|CLASS|STAT|Y|NAME)\\b)",
+                        "name": "keyword.language.procsgplot.sas"
+                    }
+                ]
+            }, 
+            {
+                "match":"(?i:\\b(WHERE|format|pageby|sumby|TITLE\\d*|FOOTNOTE\\d*|ASPECT|CYCLEATTRS|DATA|DATTRMAP|DESCRIPTION|NOAUTOLEGEND|NOBORDER|NOSUBPIXEL|SUBPIXEL|NOWALL|PAD|PCTLEVEL|PCTNDEC|SGANNO|TMPLOUT|UNIFORM)\\b)",
+                "name": "keyword.language.procsgplot.sas"
+            }
+        ]
+    },
+    "procttest":{
+        "begin": "(?i:\\b(ttest)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(DATA)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.procttest.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "begin": "(?i:\\b(BY)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procttest.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(NOTSORTED|DESCENDING)\\b)",
+                        "name": "keyword.language.procttest.sas"
+                    }
+                ]
+            },
+            {
+                "match":"(?i:\\b(WHERE|format|pageby|sumby|TITLE\\d*|FOOTNOTE\\d*|CLASS|FREQ|PAIRED|VAR|WEIGHT|CROSSOVER|IGNOREPERIOD|ORDER|ALPHA|DIST|H0|SIDES|TEST|TOST|CI|COCHRAN|PLOTS|BYVAR|NOBYVAR)\\b)",
+                "name": "keyword.language.procttest.sas"
+            }
+        ]
+    },
+    "procnpar1way":{
+        "begin": "(?i:\\b(npar1way)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(DATA)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.procnpar1way.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "begin": "(?i:\\b(BY)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procnpar1way.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(NOTSORTED|DESCENDING)\\b)",
+                        "name": "keyword.language.procnpar1way.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(EXACT)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procnpar1way.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(AB|CONOVER|HL|KLOTZ|KS|EDF|MEDIAN|MOOD|SAVAGE|SCORES|ST|VW|NORMAL|WILCOXON)\\b)",
+                        "name": "keyword.language.procnpar1way.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(output)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procnpar1way.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(out)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                        "captures": {
+                            "1":{
+                                "name": "keyword.language.procnpar1way.output.sas"
+                            },
+                            "2":{
+                                "name": "entity.name.library.output.sas"
+                            },
+                            "4":{
+                                "name": "variable.variable.dataset.language.sas"
+                            }
+                        }
+                    },
+                    {
+                        "match": "(?i:\\b(AB|ANOVA|CONOVER|EDF|KS|FP|HL|KLOTZ|MEDIAN|MOOD|SAVAGE|SCORES|ST|VW|NORMAL|WILCOXON)\\b)",
+                        "name": "keyword.language.procnpar1way.output.sas"
+                    }
+                ]
+            },
+            {
+                "match":"(?i:\\b(WHERE|format|pageby|sumby|TITLE\\d*|FOOTNOTE\\d*|CLASS|FREQ|MISSING|AB|ANOVA|CONOVER|D|DSCF|EDF|KS|FP|HL|KLOTZ|MEDIAN|MOOD|SAVAGE|SCORES|ST|VW|NORMAL|WILCOXON|ADJUST|ALPHA=|CORRECT|NOPRINT|PLOTS|VAR)\\b)",
+                "name": "keyword.language.procnpar1way.sas"
+            }
+        ]
+    },
+    "procmixed":{
+        "begin": "(?i:\\b(mixed)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(DATA)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.procmixed.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "begin": "(?i:\\b(BY)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(NOTSORTED|DESCENDING)\\b)",
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(CLASS)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(TRUNCATE|REF)\\b)",
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(CODE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(CATALOG|DUMMIES|ERROR|FILE|FORMAT|GROUP|IMPUTE|LINESIZE|LOOKUP|RESIDUAL)\\b)",
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(CONTRAST|ESTIMATE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(E|ETYPE|SINGULAR|DIVISOR|CHISQ|GROUP|GRP|DF|SUBJECT|SUB|LOWER|ALPHA|LOWERTAILED|UPPER|UPPERTAILED)\\b)",
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(RANDOM)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(GDATA|GROUP|LDATA|NOFULLZ|RATIOS|SUBJECT|SUB|TYPE|ALPHA|CL|G|GC|GCI|GCORR|GI|SOLUTION|V|VC|VCI|VCORR|VI)\\b)",
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(LSMEANS)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(AT|BYLEVEL|DIFF|OM|SINGULAR|SLICE|ADJDFE|ADJUST|ALPHA|DF|CL|CORR|COV|E)\\b)",
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(LSMESTIMATE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(AT|BYLEVEL|DIVISOR|OM|SINGULAR|ADJUST|ALPHA|LOWER|STEPDOWN|TESTVALUE|UPPER|CL|CORR|COV|E|ELSM|JOINT|SEED)\\b)",
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(MANOVA)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(H|E|M|MNAMES|PREFIX|CANONICAL|ETYPE|HTYPE|MSTAT|ORTH|PRINTE|PRINTH|SUMMARY)\\b)",
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(REPEATED)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(GROUP|LDATA|LOCAL|LOCALW|NONLOCALW|SUBJECT|TYPE|HLM|HLPS|R|RC|RCI|RCORR|RI)\\b)",
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(PARMS)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(HOLD|LOGDETH|LOWERB|NOBOUND|NOITER|NOPRINT|NOPROFILE|OLS|PARMSDATA|RATIOS|UPPERB)\\b)",
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(PRIOR)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(DATA|JEFFREYS|FLAT|ALG|BDATA|GRID|GRIDT|IFACTOR|LOGNOTE|LOGRBOUND|NSAMPLE|NSEARCH|OUT|OUTG|OUTGT|PSEARCH|PTRANS|SEED|SFACTOR|TDATA|TRANS|UPDATE)\\b)",
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(TEST)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(ETYPE|HTYPE|E|H)\\b)",
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(MEANS)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(DEPONLY|BON|DUNCAN|DUNNETT|DUNNETTL|DUNNETTU|GABRIEL|REGWQ|SCHEFFE|SIDAK|SMM|GT2|SNK|T|LSD|TUKEY|WALLER|ALPHA|CLDIFF|CLM|E|ETYPE|HTYPE|KRATIO|LINES|NOSORT|HOVTEST|WELCH)\\b)",
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(MODEL)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(NOINT|ALPHA|ALPHAP|CHISQ|DDF|DDFM|HTYPE|INFLUENCE|NOTEST|OUTP|OUTPM|RESIDUAL|VCIRY|CL|CORRB|COVB|COVBI|E|E1|E2|E3|INTERCEPT|SOLUTION|SINGCHOL|SINGRES|SINGULAR|ZETA)\\b)",
+                        "name": "keyword.language.procmixed.model.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(output)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procmixed.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(out)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                        "captures": {
+                            "1":{
+                                "name": "keyword.language.procmixed.output.sas"
+                            },
+                            "2":{
+                                "name": "entity.name.library.output.sas"
+                            },
+                            "4":{
+                                "name": "variable.variable.dataset.language.sas"
+                            }
+                        }
+                    },
+                    {
+                        "match": "(?i:\\b(COOKD|COVRATIO|DFFITS|H|LCL|LCLM|PREDICTED|PRESS|RESIDUAL|RSTUDENT|STDI|STDP|STDR|STUDENT|UCL|UCLM)\\b)",
+                        "name": "keyword.language.procmixed.output.sas"
+                    }
+                ]
+            },
+            {
+                "match":"(?i:\\b(WHERE|format|pageby|sumby|TITLE\\d*|FOOTNOTE\\d*|ABSORB|ID|FREQ|STORE|SLICE|OUT|LABEL|WEIGHT|METHOD|NOPROFILE|ORDER|ASYCORR|ASYCOV|CL|COVTEST|IC|ITDETAILS|LOGNOTE|MMEQ|MMEQSOL|NOCLPRINT|NOITPRINT|PLOTS|RANKS|RATIO|MAXFUNC|MAXITER|CONVF|CONVG|CONVH|DFBW|EMPIRICAL|NOBOUND|RIDGE|SCORING)\\b)",
+                "name": "keyword.language.procmixed.sas"
+            }
+        ]
+    },
+    "procglm":{
+        "begin": "(?i:\\b(glm)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(DATA|OUTSTAT)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.procglm.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "begin": "(?i:\\b(BY)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procglm.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(NOTSORTED|DESCENDING)\\b)",
+                        "name": "keyword.language.procglm.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(CLASS)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procglm.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(TRUNCATE|REF)\\b)",
+                        "name": "keyword.language.procglm.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(CODE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procglm.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(CATALOG|DUMMIES|ERROR|FILE|FORMAT|GROUP|IMPUTE|LINESIZE|LOOKUP|RESIDUAL)\\b)",
+                        "name": "keyword.language.procglm.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(CONTRAST|ESTIMATE)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procglm.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(E|ETYPE|SINGULAR|DIVISOR)\\b)",
+                        "name": "keyword.language.procglm.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(RANDOM)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procglm.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(Q|TEST)\\b)",
+                        "name": "keyword.language.procglm.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(LSMEANS)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procglm.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(ADJUST|ALPHA|AT|BYLEVEL|CL|COV|E|E|ETYPE|LINES|NOPRINT|OBSMARGINS|OUT|PDIFF|PLOT|SLICE|SINGULAR|STDERR|TDIFF)\\b)",
+                        "name": "keyword.language.procglm.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(MANOVA)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procglm.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(H|E|M|MNAMES|PREFIX|CANONICAL|ETYPE|HTYPE|MSTAT|ORTH|PRINTE|PRINTH|SUMMARY)\\b)",
+                        "name": "keyword.language.procglm.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(REPEATED)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procglm.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(CANONICAL|HTYPE|MEAN|MSTAT|NOM|NOU|PRINTE|PRINTH|PRINTM|PRINTRV|SUMMARY|UEPSDEF)\\b)",
+                        "name": "keyword.language.procglm.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(TEST)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procglm.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(ETYPE|HTYPE|E|H)\\b)",
+                        "name": "keyword.language.procglm.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(MEANS)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procglm.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(DEPONLY|BON|DUNCAN|DUNNETT|DUNNETTL|DUNNETTU|GABRIEL|REGWQ|SCHEFFE|SIDAK|SMM|GT2|SNK|T|LSD|TUKEY|WALLER|ALPHA|CLDIFF|CLM|E|ETYPE|HTYPE|KRATIO|LINES|NOSORT|HOVTEST|WELCH)\\b)",
+                        "name": "keyword.language.procglm.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(MODEL)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procglm.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(EFFECTSIZE|INTERCEPT|NOINT|SOLUTION|TOLERANCE|NOUNI|E|E1|E2|E3|E4|ALIASING|SS1|SS2|SS3|SS4|ALPHA|CLI|CLM|CLPARM|P|INVERSE|XPX|SINGULAR|ZETA)\\b)",
+                        "name": "keyword.language.procglm.model.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(output)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procglm.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(out)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                        "captures": {
+                            "1":{
+                                "name": "keyword.language.procglm.output.sas"
+                            },
+                            "2":{
+                                "name": "entity.name.library.output.sas"
+                            },
+                            "4":{
+                                "name": "variable.variable.dataset.language.sas"
+                            }
+                        }
+                    },
+                    {
+                        "match": "(?i:\\b(COOKD|COVRATIO|DFFITS|H|LCL|LCLM|PREDICTED|PRESS|RESIDUAL|RSTUDENT|STDI|STDP|STDR|STUDENT|UCL|UCLM)\\b)",
+                        "name": "keyword.language.procglm.output.sas"
+                    }
+                ]
+            },
+            {
+                "match":"(?i:\\b(WHERE|format|pageby|sumby|TITLE\\d*|FOOTNOTE\\d*|ABSORB|ID|FREQ|STORE|ALPHA|DATA|MANOVA|MULTIPASS|NAMELEN|NOPRINT|ORDER|OUTSTAT|PLOTS)\\b)",
+                "name": "keyword.language.procglm.sas"
+            }
+        ]
+    },
+    "procfastclus":{
+        "begin": "(?i:\\b(fastclus)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(DATA|SEED|INSTAT|OUT|OUTSTAT|MEAN|OUTSEED)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.procfastclus.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "begin": "(?i:\\b(BY)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.procfastclus.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(NOTSORTED|DESCENDING)\\b)",
+                        "name": "keyword.language.procfastclus.sas"
+                    }
+                ]
+            },
+            {
+                "match":"(?i:\\b(WHERE|format|pageby|sumby|TITLE\\d*|FOOTNOTE\\d*|FREQ|ID|WEIGHT|VAR|VARDEF|CLUSTER|CLUSTERLABEL|OUT|OUTITER|OUTSEED or MEAN|OUTSTAT|DRIFT|MAXCLUSTERS|RADIUS|RANDOM|REPLACE|CONVERGE|DELETE|LEAST|MAXITER|STRICT|BINS|HC|HP|IRLS|IMPUTE|NOMISS|DISTANCE|LIST|NOPRINT|SHORT|SUMMARY|VARIABLESAREUNCORRELATED)\\b)",
+                "name": "keyword.language.procfastclus.sas"
+            }
+        ]
+    },    
+    "proclifetest":{
+        "begin": "(?i:\\b(lifetest)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(DATA|OUTSURV|OUTTEST)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.proclifetest.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "begin": "(?i:\\b(BY)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proclifetest.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(NOTSORTED|DESCENDING)\\b)",
+                        "name": "keyword.language.proclifetest.sas"
+                    }
+                ]
+            },
+            {
+                "begin": "(?i:\\b(STRATA)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proclifetest.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(GROUP|NODETAIL|NOTEST|TEST|TREND|ADJUST|DIFF|MISSING|NOLABEL)\\b)",
+                        "name": "keyword.language.proclifetest.sas"
+                    }
+                ]
+            },
+            {
+                "match":"(?i:\\b(WHERE|format|pageby|sumby|TITLE\\d*|FOOTNOTE\\d*|FREQ|ID|TEST|plots|TIME|WEIGHT|INTERVALS|NELSON|METHOD|NINTERVAL|WIDTH|ALPHA|BANDMAXTIME|BANDMINTIME|CONFBAND|CONFTYPE|ODS Graphics|MAXTIME|PLOTS|ATRISK|NOPRINT|NOTABLE|INTERVALS|NOLEFT|TIMELIST|REDUCEOUT|ALPHAQT|MISSING|SINGULAR|STDERR|TIMELIM)\\b)",
+                "name": "keyword.language.proclifetest.sas"
+            }
+        ]
+    },  
+    "proccluster":{
+        "begin": "(?i:\\b(cluster)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
+            },
+            {
+                "match": "(?i:\\b(DATA|OUTTREE)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.proccluster.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "begin": "(?i:\\b(BY)\\b)",
+                "end": ";",
+                "beginCaptures": {
+                    "0":{
+                        "name": "keyword.language.proccluster.sas"
+                    }
+                },
+                "patterns":[
+                    {
+                        "match": "(?i:\\b(NOTSORTED|DESCENDING)\\b)",
+                        "name": "keyword.language.proccluster.sas"
+                    }
+                ]
+            },
+            {
+                "match":"(?i:\\b(WHERE|format|pageby|sumby|TITLE\\d*|FOOTNOTE\\d*|FREQ|ID|RMSSTD|VAR|COPY|BETA|HYBRID|METHOD|MODE|PENALTY|NOEIGEN|NONORM|NOSQUARE|STANDARD|TRIM|K|R|NOTIE|CCC|NOID|PRINT|PSEUDO|RMSSTD|RSQUARE|NOPRINT|PLOTS|SIMPLE)\\b)",
+                "name": "keyword.language.proccluster.sas"
+            }
+        ]
+    },    
     "proclogistic":{
         "begin": "(?i:\\b(logistic)\\b)",
         "end": "(?i:\\b((?=run))\\b)",
@@ -1185,8 +2912,8 @@
             }
         ]
     },
-    "proccluster":{
-        "begin": "(?i:\\b(cluster)\\b)",
+    "proccport":{
+        "begin": "(?i:\\b(cport)\\b)",
         "end": "(?i:\\b((?=run))\\b)",
         "beginCaptures": {
             "0":{
@@ -1198,10 +2925,10 @@
                 "include": "#specialparser"
             },
             {
-                "match": "(?i:\\b(DATA|OUTTREE)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "match": "(?i:\\b(DATA|BASE)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
                 "captures": {
                     "1":{
-                        "name": "keyword.language.proccluster.sas"
+                        "name": "keyword.language.proccport.sas"
                     },
                     "2":{
                         "name": "entity.name.library.sas"
@@ -1212,23 +2939,40 @@
                 }
             },
             {
-                "begin": "(?i:\\b(BY)\\b)",
-                "end": ";",
-                "beginCaptures": {
-                    "0":{
-                        "name": "keyword.language.proccluster.sas"
-                    }
-                },
-                "patterns":[
-                    {
-                        "match": "(?i:\\b(NOTSORTED|DESCENDING)\\b)",
-                        "name": "keyword.language.proccluster.sas"
-                    }
-                ]
+                "match":"(?i:\\b(WHERE|format|pageby|sumby|TITLE\\d*|EXCLUDE|SELECT|TRANTAB)\\b)",
+                "name": "keyword.language.proccport.sas"
+            }
+        ]
+    },
+    "procappend":{
+        "begin": "(?i:\\b(append)\\b)",
+        "end": "(?i:\\b((?=run))\\b)",
+        "beginCaptures": {
+            "0":{
+                "name": "storage.type.function.sas"
+            }
+        },
+        "patterns": [
+            {
+                "include": "#specialparser"
             },
             {
-                "match":"(?i:\\b(WHERE|format|pageby|sumby|TITLE\\d*|FOOTNOTE\\d*|FREQ|ID|RMSSTD|VAR|COPY|BETA|HYBRID|METHOD|MODE|PENALTY|NOEIGEN|NONORM|NOSQUARE|STANDARD|TRIM|K|R|NOTIE|CCC|NOID|PRINT|PSEUDO|RMSSTD|RSQUARE|NOPRINT|PLOTS|SIMPLE)\\b)",
-                "name": "keyword.language.proccluster.sas"
+                "match": "(?i:\\b(DATA|BASE)\\b\\s*=\\s*(([A-z_]\\w*)\\.)?([A-z_]\\w*))",
+                "captures": {
+                    "1":{
+                        "name": "keyword.language.procappend.sas"
+                    },
+                    "2":{
+                        "name": "entity.name.library.sas"
+                    },
+                    "4":{
+                        "name": "variable.variable.dataset.language.sas"
+                    }
+                }
+            },
+            {
+                "match":"(?i:\\b(WHERE|format|pageby|sumby|TITLE\\d*|APPENDVER|ENCRYPTKEY|FORCE|GETSORT|NOWARN)\\b)",
+                "name": "keyword.language.procappend.sas"
             }
         ]
     },
