@@ -1,7 +1,7 @@
 {
     "name": "sas-syntax",
     "displayName": "SAS-Syntax",
-    "description": "syntax highlihter for SAS",
+    "description": "syntax highlighter for SAS",
     "version": "1.0.8",
     "publisher": "77qingliu",
     "repository": "https://github.com/77QingLiu/vscode-SAS.tmLanguage",

@@ -26,6 +26,29 @@
         ],
         "description": "proc datasets"
     },
+    "proc import xlsx":{
+        "prefix": "import xlsx",
+        "body":[
+            "PROC IMPORT",
+                "\tdatafile=\"$1\"",
+                "\tout=$2",
+                "\tdbms=xlsx replace",
+                "\tsheet=\"$3\";",
+            "RUN;\n"
+        ],
+        "description": "proc import xlsx"
+    },
+    "proc import csv":{
+        "prefix": "import csv",
+        "body":[
+            "PROC IMPORT",
+                "\tdatafile=\"$1\"",
+                "\tout=$2",
+                "\tdbms=csv replace;",
+            "RUN;\n"
+        ],
+        "description": "proc import csv"
+    },
     "proc export":{
         "prefix": "export",
         "body":[
@@ -33,7 +56,7 @@
             "\tputnames=NO;",
             "RUN;\n"
         ],
-        "description": "proc datasets"
+        "description": "proc export"
     },
     "proc print":{
         "prefix": "print",
