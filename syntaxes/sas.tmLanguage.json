@@ -326,10 +326,10 @@
     },
     "line_comment_string": {
         "name": "comment.line.sas",
-        "begin": "(^[\\s%]*\\*)",
+        "begin": "(^|;)[\\s%]*(\\*)",
         "end": ";",
         "beginCaptures":{
-            "0":{
+            "1":{
                 "name": "punctuation.definition.comment"
             }
         },        
